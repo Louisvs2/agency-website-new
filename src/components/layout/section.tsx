@@ -17,6 +17,10 @@ const sectionVariants = cva("py-16 sm:py-20 lg:py-28", {
   },
 });
 
+export type SectionBackground = VariantProps<
+  typeof sectionVariants
+>["background"];
+
 export function Section({
   className,
   background,
