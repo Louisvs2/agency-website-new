@@ -2,13 +2,12 @@
 // the CLIENT.md briefing — no line of this file may survive a client launch.
 // Structure and tone demonstrate the intended quality bar (DESIGN.md §14).
 
-import { Compass, PenTool, Rocket } from "lucide-react";
-
 import type { Service } from "@/components/sections/features";
 import type { FaqItem } from "@/components/sections/faq";
 import type { ProcessStep } from "@/components/sections/process";
 import type { Stat } from "@/components/sections/stats";
 import type { Testimonial } from "@/components/shared/testimonial-card";
+import { services } from "@/content/services";
 import type { Action, SectionIntro } from "@/types/content";
 
 interface HomeContent {
@@ -44,29 +43,12 @@ export const home: HomeContent = {
       subtitle:
         "Drei bis vier Kernleistungen, jeweils als Ergebnis für den Kunden formuliert — nicht als Fähigkeit des Unternehmens.",
     },
-    items: [
-      {
-        icon: Compass,
-        title: "Leistung Eins",
-        description:
-          "Zwei Sätze zum Ergebnis dieser Leistung: Was hat der Kunde am Ende in der Hand, und welches Problem ist damit gelöst?",
-        href: "/leistungen#leistung-eins",
-      },
-      {
-        icon: PenTool,
-        title: "Leistung Zwei",
-        description:
-          "Zwei Sätze zum Ergebnis dieser Leistung: Was hat der Kunde am Ende in der Hand, und welches Problem ist damit gelöst?",
-        href: "/leistungen#leistung-zwei",
-      },
-      {
-        icon: Rocket,
-        title: "Leistung Drei",
-        description:
-          "Zwei Sätze zum Ergebnis dieser Leistung: Was hat der Kunde am Ende in der Hand, und welches Problem ist damit gelöst?",
-        href: "/leistungen#leistung-drei",
-      },
-    ],
+    items: services.map((service) => ({
+      icon: service.icon,
+      title: service.title,
+      description: service.excerpt,
+      href: `/leistungen/${service.slug}`,
+    })),
   },
   stats: [
     { value: 120, suffix: "+", label: "Abgeschlossene Projekte" },

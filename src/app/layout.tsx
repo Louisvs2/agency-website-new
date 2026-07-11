@@ -6,7 +6,10 @@ import { fontSans } from "@/lib/fonts";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
+  title: {
+    default: siteConfig.name,
+    template: `%s – ${siteConfig.name}`,
+  },
   description: siteConfig.description,
 };
 
