@@ -1,11 +1,18 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
+import {
+  LazyMotion,
+  domAnimation,
+  m,
+  useReducedMotion,
+  type HTMLMotionProps,
+} from "motion/react";
 
 // Motion language of the template (DESIGN.md §10–11): small distances,
 // short durations, ease-out, animate once on entry, never re-animate.
 // With prefers-reduced-motion the movement is dropped and only a fade runs.
+// LazyMotion + m keeps the motion runtime out of the main bundle.
 
 const StaggerContext = createContext(false);
 
@@ -16,22 +23,24 @@ export function FadeIn(props: HTMLMotionProps<"div">) {
   const isInsideStagger = useContext(StaggerContext);
 
   return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: reduceMotion ? 0 : 16 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5, ease: "easeOut" },
-        },
-      }}
-      // Inside a FadeInStagger the parent orchestrates the variants;
-      // standalone, the element animates itself when entering the viewport.
-      {...(isInsideStagger
-        ? {}
-        : { initial: "hidden", whileInView: "visible", viewport })}
-      {...props}
-    />
+    <LazyMotion features={domAnimation} strict>
+      <m.div
+        variants={{
+          hidden: { opacity: 0, y: reduceMotion ? 0 : 16 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5, ease: "easeOut" },
+          },
+        }}
+        // Inside a FadeInStagger the parent orchestrates the variants;
+        // standalone, the element animates itself when entering the viewport.
+        {...(isInsideStagger
+          ? {}
+          : { initial: "hidden", whileInView: "visible", viewport })}
+        {...props}
+      />
+    </LazyMotion>
   );
 }
 
@@ -41,17 +50,19 @@ export function FadeInStagger({
 }: HTMLMotionProps<"div"> & { fast?: boolean }) {
   return (
     <StaggerContext.Provider value={true}>
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewport}
-        variants={{
-          visible: {
-            transition: { staggerChildren: fast ? 0.06 : 0.1 },
-          },
-        }}
-        {...props}
-      />
+      <LazyMotion features={domAnimation} strict>
+        <m.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+          variants={{
+            visible: {
+              transition: { staggerChildren: fast ? 0.06 : 0.1 },
+            },
+          }}
+          {...props}
+        />
+      </LazyMotion>
     </StaggerContext.Provider>
   );
 }
