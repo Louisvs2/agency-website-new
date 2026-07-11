@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 
+import { siteConfig } from "@/config/site";
 import { fontSans } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Website Template",
-  description: "Agency starter template for marketing websites.",
+  title: siteConfig.name,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({
