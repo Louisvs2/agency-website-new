@@ -23,18 +23,18 @@ Ein wiederverwendbares, produktionsreifes Starter-Template für hochwertige Mark
 
 ## 2. Technologie-Stack
 
-| Bereich | Technologie | Anmerkung |
-|---|---|---|
-| Framework | Next.js 15 (App Router) | React 19, Server Components als Default |
-| Sprache | TypeScript | `strict: true` |
-| Styling | Tailwind CSS v4 | CSS-first-Konfiguration, Design-Tokens als CSS-Variablen |
-| UI-Komponenten | shadcn/ui | Generierte Komponenten in `src/components/ui/` |
-| Animationen | Framer Motion (`motion`) | Nur in dünnen Client-Wrappern |
-| Hosting | Vercel | Preview-Deployments pro Branch als Review-Workflow |
-| Formulare | react-hook-form + zod | Validierung client- und serverseitig |
-| E-Mail | Resend + react-email | Kontaktformular-Versand |
-| Analytics | @vercel/analytics + @vercel/speed-insights | Laden erst nach Cookie-Consent |
-| Icons | lucide-react | shadcn-Standard |
+| Bereich        | Technologie                                | Anmerkung                                                |
+| -------------- | ------------------------------------------ | -------------------------------------------------------- |
+| Framework      | Next.js 15 (App Router)                    | React 19, Server Components als Default                  |
+| Sprache        | TypeScript                                 | `strict: true`                                           |
+| Styling        | Tailwind CSS v4                            | CSS-first-Konfiguration, Design-Tokens als CSS-Variablen |
+| UI-Komponenten | shadcn/ui                                  | Generierte Komponenten in `src/components/ui/`           |
+| Animationen    | Framer Motion (`motion`)                   | Nur in dünnen Client-Wrappern                            |
+| Hosting        | Vercel                                     | Preview-Deployments pro Branch als Review-Workflow       |
+| Formulare      | react-hook-form + zod                      | Validierung client- und serverseitig                     |
+| E-Mail         | Resend + react-email                       | Kontaktformular-Versand                                  |
+| Analytics      | @vercel/analytics + @vercel/speed-insights | Laden erst nach Cookie-Consent                           |
+| Icons          | lucide-react                               | shadcn-Standard                                          |
 
 **Tooling (devDependencies):**
 
@@ -113,13 +113,13 @@ website-template/
 
 ### Layout
 
-| Komponente | Beschreibung |
-|---|---|
-| `Header` | Sticky, mit Scroll-Verhalten (Blur/Schrumpfen) |
-| `MobileNav` | Sheet/Drawer-basiert (shadcn `Sheet`) |
-| `Footer` | Spalten generiert aus `config/navigation.ts` |
-| `Container` | Einheitliche max-width/padding-Logik |
-| `Section` | Vertikaler Rhythmus + Hintergrundvarianten |
+| Komponente  | Beschreibung                                   |
+| ----------- | ---------------------------------------------- |
+| `Header`    | Sticky, mit Scroll-Verhalten (Blur/Schrumpfen) |
+| `MobileNav` | Sheet/Drawer-basiert (shadcn `Sheet`)          |
+| `Footer`    | Spalten generiert aus `config/navigation.ts`   |
+| `Container` | Einheitliche max-width/padding-Logik           |
+| `Section`   | Vertikaler Rhythmus + Hintergrundvarianten     |
 
 ### Marketing-Sektionen
 
@@ -188,13 +188,13 @@ Decken ~90 % jeder Kundenseite ab. Jede Sektion erhält ihren Content als typisi
 
 **Messbare Ziele (Lighthouse, Mobile, Produktions-Build auf Vercel):**
 
-| Metrik | Ziel |
-|---|---|
-| Lighthouse Performance | ≥ 95 |
-| LCP (Largest Contentful Paint) | < 2,0 s |
-| CLS (Cumulative Layout Shift) | < 0,05 |
+| Metrik                          | Ziel     |
+| ------------------------------- | -------- |
+| Lighthouse Performance          | ≥ 95     |
+| LCP (Largest Contentful Paint)  | < 2,0 s  |
+| CLS (Cumulative Layout Shift)   | < 0,05   |
 | INP (Interaction to Next Paint) | < 200 ms |
-| First-Load JS (Startseite) | < 150 kB |
+| First-Load JS (Startseite)      | < 150 kB |
 
 **Maßnahmen:**
 
@@ -242,12 +242,14 @@ Decken ~90 % jeder Kundenseite ab. Jede Sektion erhält ihren Content als typisi
 ## 10. Roadmap für die Implementierung
 
 ### Phase 1 — Fundament
+
 - Next.js 15 + TypeScript (strict) aufsetzen
 - Tailwind CSS v4 + shadcn/ui initialisieren (`components.json`)
 - Tooling: ESLint, Prettier + Tailwind-Plugin, Husky + lint-staged
 - Basisdateien: `.env.example`, `tsconfig.json`, `next.config.ts`, `.prettierrc`
 
 ### Phase 2 — Designsystem & Layout-Primitives
+
 - Design-Tokens in `globals.css` (Farben, Typografie, Radius)
 - Fonts über `next/font`
 - `Container`, `Section`, `SectionHeading`
@@ -255,22 +257,26 @@ Decken ~90 % jeder Kundenseite ab. Jede Sektion erhält ihren Content als typisi
 - `config/site.ts` und `config/navigation.ts` mit typisierten Schemas
 
 ### Phase 3 — Motion & Sektionen
+
 - Motion-Wrapper (`FadeIn`, `FadeInStagger`, `AnimatedNumber`) inkl. `prefers-reduced-motion`
 - Alle Marketing-Sektionen aus Abschnitt 4, props-getrieben mit typisiertem Content
 - Beispiel-Content in `content/` als Platzhalter-Kundenprojekt
 
 ### Phase 4 — Seiten, Formular & Recht
+
 - Seitengerüst: Start, Über uns, Leistungen (+ Detail), Kontakt
 - Kontaktformular: react-hook-form + zod + API-Route + Resend
 - `(legal)`-Seiten (Impressum, Datenschutz) als strukturierte Platzhalter
 - `CookieConsent` mit Consent-abhängigem Analytics-Loading
 
 ### Phase 5 — SEO, Performance & A11y-Härtung
+
 - `lib/metadata.ts`, `lib/schema.ts` (JSON-LD)
 - `sitemap.ts`, `robots.ts`, `manifest.ts`, `opengraph-image.tsx`, `not-found.tsx`, `error.tsx`
 - Lighthouse-Audit gegen die Ziele aus Abschnitt 7 und 8; Nachbesserung
 
 ### Phase 6 — Dokumentation & Abnahme
+
 - README mit Checkliste „Neuen Kunden aufsetzen" (Reihenfolge: Tokens → `site.ts` → `navigation.ts` → `content/` → Assets → Legal)
 - Erweiterungsrezepte dokumentieren (CMS, i18n, Blog)
 - Vercel-Deployment des Templates als Referenz/Demo

@@ -2,7 +2,7 @@
 
 Permanent working rules for Claude Code in this repository.
 
-This file defines **how** we work. It does not describe the project's architecture — see `PLAN.md` for the tech stack, folder structure, component library, and roadmap. When in doubt about *what* to build, consult `PLAN.md`; when in doubt about *how* to build it, this file wins.
+This file defines **how** we work. It does not describe the project's architecture — see `PLAN.md` for the tech stack, folder structure, component library, and roadmap. When in doubt about _what_ to build, consult `PLAN.md`; when in doubt about _how_ to build it, this file wins.
 
 ## 1. Way of Working
 
@@ -48,7 +48,7 @@ This file defines **how** we work. It does not describe the project's architectu
 ## 6. Git
 
 - **Small commits.** One logical change per commit. Setup, feature, and fix commits stay separate.
-- **Meaningful commit messages.** Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`), imperative mood, message describes the *why* when it isn't obvious.
+- **Meaningful commit messages.** Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`), imperative mood, message describes the _why_ when it isn't obvious.
 - **Never commit half-finished code.** Every commit builds, lints, and type-checks. No `WIP` commits, no broken intermediate states on the branch.
 
 ## 7. General Rules

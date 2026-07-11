@@ -39,12 +39,12 @@
 
 > List every service that should appear on the website. Order = display order. Each service becomes an entry in `src/content/` and, if marked, a detail page under `/leistungen/[slug]`.
 
-| # | Service name | Short description (1–2 sentences) | Detail page? | Priority |
-|---|---|---|---|---|
-| 1 | [Service A] | [What is it, what outcome does the customer get?] | yes/no | high/normal |
-| 2 | [Service B] | [...] | yes/no | high/normal |
-| 3 | [Service C] | [...] | yes/no | high/normal |
-| 4 | [...] | [...] | yes/no | high/normal |
+| #   | Service name | Short description (1–2 sentences)                 | Detail page? | Priority    |
+| --- | ------------ | ------------------------------------------------- | ------------ | ----------- |
+| 1   | [Service A]  | [What is it, what outcome does the customer get?] | yes/no       | high/normal |
+| 2   | [Service B]  | [...]                                             | yes/no       | high/normal |
+| 3   | [Service C]  | [...]                                             | yes/no       | high/normal |
+| 4   | [...]        | [...]                                             | yes/no       | high/normal |
 
 - **Flagship service** (gets the most prominence): [Service name]
 - **Services explicitly NOT offered** (to avoid wrong inquiries): [e.g. "no emergency service", or "none"]
@@ -63,13 +63,13 @@
 
 > Determines the overall feel of design and copy. Check per pair — where on the spectrum does this brand sit?
 
-| Trait | 1 | 2 | 3 | 4 | 5 | Trait |
-|---|---|---|---|---|---|---|
-| Traditional | ☐ | ☐ | ☐ | ☐ | ☐ | Modern |
-| Serious | ☐ | ☐ | ☐ | ☐ | ☐ | Playful |
-| Premium / exclusive | ☐ | ☐ | ☐ | ☐ | ☐ | Accessible / down-to-earth |
-| Corporate | ☐ | ☐ | ☐ | ☐ | ☐ | Personal |
-| Calm / understated | ☐ | ☐ | ☐ | ☐ | ☐ | Bold / expressive |
+| Trait               | 1   | 2   | 3   | 4   | 5   | Trait                      |
+| ------------------- | --- | --- | --- | --- | --- | -------------------------- |
+| Traditional         | ☐   | ☐   | ☐   | ☐   | ☐   | Modern                     |
+| Serious             | ☐   | ☐   | ☐   | ☐   | ☐   | Playful                    |
+| Premium / exclusive | ☐   | ☐   | ☐   | ☐   | ☐   | Accessible / down-to-earth |
+| Corporate           | ☐   | ☐   | ☐   | ☐   | ☐   | Personal                   |
+| Calm / understated  | ☐   | ☐   | ☐   | ☐   | ☐   | Bold / expressive          |
 
 - **Three adjectives the client wants visitors to feel:** [e.g. "competent, warm, precise"]
 - **Brands the client admires (any industry):** [Used to calibrate taste — not to copy]
@@ -125,15 +125,15 @@
 
 > Used in the footer, contact page, and `LocalBusiness` structured data.
 
-| Day | Hours |
-|---|---|
-| Monday | [08:00–17:00 / closed] |
-| Tuesday | [...] |
-| Wednesday | [...] |
-| Thursday | [...] |
-| Friday | [...] |
-| Saturday | [...] |
-| Sunday | [...] |
+| Day       | Hours                  |
+| --------- | ---------------------- |
+| Monday    | [08:00–17:00 / closed] |
+| Tuesday   | [...]                  |
+| Wednesday | [...]                  |
+| Thursday  | [...]                  |
+| Friday    | [...]                  |
+| Saturday  | [...]                  |
+| Sunday    | [...]                  |
 
 - **Deviations / notes:** [e.g. "by appointment only", "24/7 emergency line", or "not applicable — online business"]
 
@@ -182,13 +182,13 @@
 
 > Linked in footer and `sameAs` structured data. Only list profiles that are actively maintained — dead profiles hurt trust.
 
-| Platform | URL | Active? | Show on site? |
-|---|---|---|---|
-| Instagram | [URL / —] | yes/no | yes/no |
-| Facebook | [URL / —] | yes/no | yes/no |
-| LinkedIn | [URL / —] | yes/no | yes/no |
-| YouTube | [URL / —] | yes/no | yes/no |
-| TikTok / X / other | [URL / —] | yes/no | yes/no |
+| Platform           | URL       | Active? | Show on site? |
+| ------------------ | --------- | ------- | ------------- |
+| Instagram          | [URL / —] | yes/no  | yes/no        |
+| Facebook           | [URL / —] | yes/no  | yes/no        |
+| LinkedIn           | [URL / —] | yes/no  | yes/no        |
+| YouTube            | [URL / —] | yes/no  | yes/no        |
+| TikTok / X / other | [URL / —] | yes/no  | yes/no        |
 
 ## 20. Google Reviews
 
@@ -206,10 +206,10 @@
 > Used for positioning and SEO — never for copying.
 
 | Competitor | Website | What they do well | How we differentiate |
-|---|---|---|---|
-| [Name] | [URL] | [...] | [...] |
-| [Name] | [URL] | [...] | [...] |
-| [Name] | [URL] | [...] | [...] |
+| ---------- | ------- | ----------------- | -------------------- |
+| [Name]     | [URL]   | [...]             | [...]                |
+| [Name]     | [URL]   | [...]             | [...]                |
+| [Name]     | [URL]   | [...]             | [...]                |
 
 - **Websites the client likes (any industry) & why:** [URL — what specifically?]
 - **Websites the client dislikes & why:** [URL — what specifically?]
@@ -219,11 +219,11 @@
 - **Primary keyword (homepage):** [e.g. "Badsanierung München"]
 - **Keyword per service page:**
 
-| Page | Target keyword | Search intent |
-|---|---|---|
-| Home | [...] | [...] |
-| [Service A] | [...] | [informational/transactional] |
-| [Service B] | [...] | [...] |
+| Page        | Target keyword | Search intent                 |
+| ----------- | -------------- | ----------------------------- |
+| Home        | [...]          | [...]                         |
+| [Service A] | [...]          | [informational/transactional] |
+| [Service B] | [...]          | [...]                         |
 
 - **Local modifiers:** [city/region terms from §14]
 - **Terms customers actually use** (client's words, from real inquiries): [often differs from industry jargon!]

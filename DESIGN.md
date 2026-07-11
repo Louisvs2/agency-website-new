@@ -4,7 +4,7 @@ The permanent design philosophy of this agency.
 
 This is **not** a branding guide for any single customer. Client brands change per project (colors, fonts, logos live in the design tokens and `src/config/`). This document defines the visual quality standards that **every** website we ship must meet, regardless of brand.
 
-The goal: every site we build should feel like it was designed by one of the world's best digital product studios. We use Apple, Stripe, Linear, Vercel, Raycast, Arc Browser, and Notion as **quality references** — a bar for craft, restraint, and polish. We never copy them. A client's site must feel like the best version of *that client*, executed at that level of quality.
+The goal: every site we build should feel like it was designed by one of the world's best digital product studios. We use Apple, Stripe, Linear, Vercel, Raycast, Arc Browser, and Notion as **quality references** — a bar for craft, restraint, and polish. We never copy them. A client's site must feel like the best version of _that client_, executed at that level of quality.
 
 How the documents relate: `PLAN.md` defines what we build, `CLAUDE.md` defines how we work, `DESIGN.md` defines what quality looks like. When a design decision conflicts with convenience, this document wins.
 
@@ -256,4 +256,4 @@ The banned list. These patterns mark a site as template-built or trend-chasing �
 - Hover-only functionality on touch devices; unlabeled icon-only navigation.
 - Placeholder or lorem-ipsum text in anything a client or visitor sees.
 
-**The test:** before shipping any page, ask — *would this section look at home on a site by the studios we measure against?* If it would look at home on a €50 template marketplace instead, it gets redesigned. When in doubt, remove; restraint has never made one of our sites worse.
+**The test:** before shipping any page, ask — _would this section look at home on a site by the studios we measure against?_ If it would look at home on a €50 template marketplace instead, it gets redesigned. When in doubt, remove; restraint has never made one of our sites worse.
