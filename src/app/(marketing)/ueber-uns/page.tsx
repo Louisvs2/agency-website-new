@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CTACentered } from "@/components/sections/cta";
+import { CTA } from "@/components/sections/cta";
 import { FeatureSplit } from "@/components/sections/features";
 import { HeroStatement } from "@/components/sections/hero";
 import { about } from "@/content/about";
@@ -19,7 +19,7 @@ export default function UeberUnsPage() {
         items={about.values.items}
         background="muted"
       />
-      <CTACentered {...about.cta} />
+      <CTA {...about.cta} />
     </>
   );
 }

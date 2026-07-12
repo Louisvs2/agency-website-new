@@ -1,4 +1,4 @@
-import { CTACentered } from "@/components/sections/cta";
+import { CTA } from "@/components/sections/cta";
 import { FAQ } from "@/components/sections/faq";
 import { ServiceCards } from "@/components/sections/features";
 import { HeroCentered } from "@/components/sections/hero";
@@ -29,7 +29,7 @@ export default function HomePage() {
         items={home.testimonials.items}
       />
       <FAQ intro={home.faq.intro} items={home.faq.items} background="muted" />
-      <CTACentered {...home.cta} />
+      <CTA {...home.cta} />
     </>
   );
 }

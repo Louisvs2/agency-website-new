@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CTACentered } from "@/components/sections/cta";
+import { CTA } from "@/components/sections/cta";
 import { FAQ } from "@/components/sections/faq";
 import { FeatureGrid } from "@/components/sections/features";
 import { HeroStatement } from "@/components/sections/hero";
@@ -51,7 +51,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           items={service.faq}
         />
       )}
-      <CTACentered {...servicesPage.cta} background="muted" />
+      <CTA {...servicesPage.cta} background="muted" />
     </>
   );
 }

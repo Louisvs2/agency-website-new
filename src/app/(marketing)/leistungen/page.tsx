@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CTACentered } from "@/components/sections/cta";
+import { CTA } from "@/components/sections/cta";
 import { ServiceCards } from "@/components/sections/features";
 import { HeroCentered } from "@/components/sections/hero";
 import { services, servicesPage } from "@/content/services";
@@ -27,7 +27,7 @@ export default function LeistungenPage() {
         }))}
         background="muted"
       />
-      <CTACentered {...servicesPage.cta} />
+      <CTA {...servicesPage.cta} />
     </>
   );
 }

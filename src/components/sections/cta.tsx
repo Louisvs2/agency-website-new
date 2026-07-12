@@ -7,24 +7,30 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Action } from "@/types/content";
 
-interface CtaBaseProps {
+interface CTAProps {
   title: string;
   subtitle?: string;
   action: Action;
   /** Reassurance microcopy under the button, e.g. a response-time promise. */
   note?: string;
+  /**
+   * `centered` — calm, spacious closing CTA, the standard end of a page.
+   * `panel` — contained inverted panel, a stronger beat mid-page.
+   */
+  variant?: "centered" | "panel";
+  /** Section background — applies to the `centered` variant only. */
+  background?: SectionBackground;
   className?: string;
 }
 
-/** Calm, spacious closing CTA — the standard end of every page. */
-export function CTACentered({
+function CTACentered({
   title,
   subtitle,
   action,
   note,
   background,
   className,
-}: CtaBaseProps & { background?: SectionBackground }) {
+}: Omit<CTAProps, "variant">) {
   return (
     <Section
       background={background}
@@ -52,14 +58,13 @@ export function CTACentered({
   );
 }
 
-/** Contained inverted panel — a stronger visual beat mid-page or before the footer. */
-export function CTAPanel({
+function CTAPanel({
   title,
   subtitle,
   action,
   note,
   className,
-}: CtaBaseProps) {
+}: Omit<CTAProps, "variant" | "background">) {
   return (
     <Section className={className}>
       <Container>
@@ -88,4 +93,13 @@ export function CTAPanel({
       </Container>
     </Section>
   );
+}
+
+// A single call-to-action section with two premium layouts. Consumers pick a
+// layout via `variant`; both share the same typed content props.
+export function CTA({ variant = "centered", ...props }: CTAProps) {
+  if (variant === "panel") {
+    return <CTAPanel {...props} />;
+  }
+  return <CTACentered {...props} />;
 }
