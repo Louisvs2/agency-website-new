@@ -32,8 +32,8 @@ export function TeamGrid({
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeInStagger fast className={cn(intro && "mt-12 sm:mt-16")}>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
+        <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
+          <ul className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-4">
             {members.map((member) => (
               <li key={member.name}>
                 <FadeIn>

@@ -46,8 +46,8 @@ export function FeatureGrid({
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeInStagger fast className={cn(intro && "mt-12 sm:mt-16")}>
-          <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
+          <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((feature) => (
               <li key={feature.title}>
                 <FadeIn className="flex flex-col gap-4">
@@ -81,7 +81,7 @@ export function FeatureSplit({
         <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
           <SectionHeading {...intro} align="start" />
           <FadeInStagger fast className="lg:col-span-2">
-            <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+            <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2">
               {items.map((feature) => (
                 <li key={feature.title}>
                   <FadeIn className="flex flex-col gap-4">
@@ -114,14 +114,14 @@ export function ServiceCards({
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeInStagger fast className={cn(intro && "mt-12 sm:mt-16")}>
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {items.map((service) => (
               <li key={service.href}>
                 <FadeIn className="h-full">
                   <Link
                     href={service.href}
-                    className="group flex h-full flex-col rounded-xl border bg-card p-6 transition-colors outline-none hover:border-foreground/25 focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:p-8"
+                    className="group flex h-full flex-col rounded-xl border bg-card p-6 transition-colors outline-none hover:border-foreground/25 focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:p-8 lg:p-10"
                   >
                     <div className="flex items-start justify-between gap-4">
                       {service.icon && <FeatureIcon icon={service.icon} />}

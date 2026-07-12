@@ -29,7 +29,7 @@ export function ProcessSteps({
       <Container>
         {intro && <SectionHeading {...intro} />}
         <FadeInStagger
-          className={cn("mx-auto max-w-2xl", intro && "mt-12 sm:mt-16")}
+          className={cn("mx-auto max-w-2xl", intro && "mt-14 sm:mt-20")}
         >
           <ol>
             {steps.map((step, index) => (

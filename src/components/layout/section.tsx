@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 // The single source of vertical rhythm between sections (DESIGN.md §4, §8).
 // Background variants alternate base and subtly tinted surfaces to
 // structure long pages — never introduce ad-hoc section padding.
-const sectionVariants = cva("py-16 sm:py-20 lg:py-28", {
+const sectionVariants = cva("py-20 sm:py-28 lg:py-32", {
   variants: {
     background: {
       default: "bg-background",

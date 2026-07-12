@@ -25,8 +25,8 @@ export function Gallery({
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeInStagger fast className={cn(intro && "mt-12 sm:mt-16")}>
-          <ul className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+        <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
+          <ul className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 lg:gap-8">
             {images.map((image) => (
               <li key={image.alt}>
                 <FadeIn className="relative aspect-[4/3] overflow-hidden rounded-xl">

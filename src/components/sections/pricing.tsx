@@ -41,13 +41,13 @@ export function PricingTable({
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeInStagger fast className={cn(intro && "mt-12 sm:mt-16")}>
-          <ul className="grid gap-6 lg:grid-cols-3">
+        <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
+          <ul className="grid gap-6 lg:grid-cols-3 lg:gap-8">
             {plans.map((plan) => (
               <li key={plan.name}>
                 <FadeIn
                   className={cn(
-                    "relative flex h-full flex-col rounded-xl border bg-card p-6 sm:p-8",
+                    "relative flex h-full flex-col rounded-xl border bg-card p-6 sm:p-8 lg:p-10",
                     plan.highlighted && "border-primary",
                   )}
                 >

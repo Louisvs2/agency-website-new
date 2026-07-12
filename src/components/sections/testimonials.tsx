@@ -28,8 +28,8 @@ export function TestimonialsGrid({
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeInStagger fast className={cn(intro && "mt-12 sm:mt-16")}>
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {items.map((testimonial) => (
               <li key={testimonial.name}>
                 <FadeIn className="h-full">
@@ -55,7 +55,7 @@ export function TestimonialsCarousel({
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeIn className={cn(intro && "mt-12 sm:mt-16")}>
+        <FadeIn className={cn(intro && "mt-14 sm:mt-20")}>
           <TestimonialsCarouselTrack testimonials={items} />
         </FadeIn>
       </Container>

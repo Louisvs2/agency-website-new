@@ -22,7 +22,7 @@ export function TestimonialCard({
   return (
     <figure
       className={cn(
-        "flex h-full flex-col rounded-xl border bg-card p-6 sm:p-8",
+        "flex h-full flex-col rounded-xl border bg-card p-6 sm:p-8 lg:p-10",
         className,
       )}
     >

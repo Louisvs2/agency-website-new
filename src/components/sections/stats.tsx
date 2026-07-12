@@ -26,8 +26,8 @@ export function Stats({ intro, items, background, className }: StatsProps) {
     <Section background={background} className={className}>
       <Container>
         {intro && <SectionHeading {...intro} />}
-        <FadeInStagger fast className={cn(intro && "mt-12 sm:mt-16")}>
-          <dl className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
+        <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
+          <dl className="grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-4">
             {items.map((stat) => (
               <FadeIn key={stat.label} className="border-l pl-4 sm:pl-6">
                 <dd className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
