@@ -89,12 +89,24 @@
   }
   body {
     @apply bg-background font-sans text-foreground antialiased;
+    /* Premium text rendering: kerning, standard ligatures, contextual
+       alternates — the quiet baseline for Apple/Stripe/Linear-grade type. */
+    font-feature-settings: "kern", "liga", "calt";
   }
+  /* Shared heading treatment (DESIGN.md §3): display font, heavy weight,
+     tight tracking, tight leading, balanced wrapping. Component utilities
+     set the size per level, so the hierarchy stays intact. */
   h1,
   h2,
   h3,
-  h4 {
-    @apply font-display text-balance;
+  h4,
+  h5,
+  h6 {
+    @apply font-display leading-tight font-semibold tracking-tight text-balance;
+  }
+  /* Even wrapping and comfortable measure for body copy by default. */
+  p {
+    @apply text-pretty;
   }
   ::selection {
     @apply bg-primary text-primary-foreground;

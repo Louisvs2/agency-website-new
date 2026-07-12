@@ -35,15 +35,15 @@ export function SectionHeading({
       {...props}
     >
       {eyebrow && (
-        <p className="mb-3 text-sm font-medium text-muted-foreground">
+        <p className="mb-4 text-sm font-medium text-muted-foreground">
           {eyebrow}
         </p>
       )}
-      <Heading className="text-3xl leading-[1.1] font-semibold tracking-tight sm:text-4xl">
+      <Heading className="text-3xl leading-[1.1] font-semibold tracking-tight text-balance sm:text-4xl">
         {title}
       </Heading>
       {subtitle && (
-        <p className="mt-4 text-lg leading-relaxed text-pretty text-muted-foreground">
+        <p className="mt-5 text-lg leading-relaxed text-pretty text-muted-foreground">
           {subtitle}
         </p>
       )}
