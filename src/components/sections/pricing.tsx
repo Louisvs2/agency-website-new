@@ -48,7 +48,7 @@ export function PricingTable({
                 <FadeIn
                   className={cn(
                     "relative flex h-full flex-col rounded-xl border bg-card p-6 sm:p-8 lg:p-10",
-                    plan.highlighted && "border-primary",
+                    plan.highlighted && "border-primary shadow-sm",
                   )}
                 >
                   {plan.badge && (

@@ -35,7 +35,7 @@ export function SectionHeading({
       {...props}
     >
       {eyebrow && (
-        <p className="mb-4 text-sm font-medium text-muted-foreground">
+        <p className="mb-4 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
           {eyebrow}
         </p>
       )}

@@ -26,7 +26,7 @@ export function TestimonialCard({
         className,
       )}
     >
-      <blockquote className="flex-1 text-base leading-relaxed">
+      <blockquote className="flex-1 text-lg leading-relaxed text-pretty">
         {testimonial.quote}
       </blockquote>
       <figcaption className="mt-6 flex items-center gap-3">
@@ -42,7 +42,7 @@ export function TestimonialCard({
           </div>
         )}
         <div>
-          <p className="text-sm font-medium">{testimonial.name}</p>
+          <p className="text-sm font-semibold">{testimonial.name}</p>
           {testimonial.role && (
             <p className="text-sm text-muted-foreground">{testimonial.role}</p>
           )}

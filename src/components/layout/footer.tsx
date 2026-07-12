@@ -10,7 +10,7 @@ import { siteConfig } from "@/config/site";
 export function Footer() {
   return (
     <footer className="border-t">
-      <Container className="py-12 lg:py-16">
+      <Container className="py-16 lg:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-xs">
             <p className="text-base font-semibold tracking-tight">
