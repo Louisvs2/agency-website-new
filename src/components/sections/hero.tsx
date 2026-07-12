@@ -184,3 +184,89 @@ export function HeroStatement({
     </Section>
   );
 }
+
+/** Full-width hero: a full-bleed background image with overlaid content.
+ *  The image is the LCP element; a scrim guarantees text contrast on any
+ *  image (DESIGN.md §12). Text is light-on-dark and therefore theme-neutral. */
+export function HeroFullWidth({
+  eyebrow,
+  title,
+  subtitle,
+  actions,
+  image,
+  align = "center",
+  className,
+}: HeroBaseProps & { image: SectionImage; align?: "center" | "start" }) {
+  const centered = align === "center";
+  return (
+    <section
+      className={cn(
+        "relative isolate flex min-h-[70vh] items-center overflow-hidden py-24 sm:py-32 lg:min-h-[80vh]",
+        className,
+      )}
+    >
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="-z-10 object-cover"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 to-black/65"
+      />
+      <Container>
+        <FadeInStagger
+          className={cn(
+            "flex max-w-3xl flex-col gap-6",
+            centered && "mx-auto items-center text-center",
+          )}
+        >
+          {eyebrow && (
+            <FadeIn>
+              <p className="text-sm font-medium text-white/70">{eyebrow}</p>
+            </FadeIn>
+          )}
+          <FadeIn>
+            <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              {title}
+            </h1>
+          </FadeIn>
+          {subtitle && (
+            <FadeIn>
+              <p className="max-w-2xl text-lg leading-relaxed text-pretty text-white/80 sm:text-xl">
+                {subtitle}
+              </p>
+            </FadeIn>
+          )}
+          {actions && (
+            <FadeIn
+              className={cn(
+                "mt-2 flex flex-wrap items-center gap-3",
+                centered && "justify-center",
+              )}
+            >
+              <Button asChild size="lg">
+                <Link href={actions.primary.href}>{actions.primary.label}</Link>
+              </Button>
+              {actions.secondary && (
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                >
+                  <Link href={actions.secondary.href}>
+                    {actions.secondary.label}
+                  </Link>
+                </Button>
+              )}
+            </FadeIn>
+          )}
+        </FadeInStagger>
+      </Container>
+    </section>
+  );
+}
