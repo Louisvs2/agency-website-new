@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Section, type SectionBackground } from "@/components/layout/section";
@@ -23,6 +24,29 @@ interface CTAProps {
   className?: string;
 }
 
+// The single conversion action, with a quiet trailing-arrow micro-interaction
+// on hover — a premium affordance that draws the eye without shouting
+// (DESIGN.md §6, §15).
+function CTAButton({
+  action,
+  variant = "default",
+}: {
+  action: Action;
+  variant?: "default" | "secondary";
+}) {
+  return (
+    <Button asChild size="lg" variant={variant} className="group">
+      <Link href={action.href}>
+        {action.label}
+        <ArrowRight
+          aria-hidden
+          className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none"
+        />
+      </Link>
+    </Button>
+  );
+}
+
 function CTACentered({
   title,
   subtitle,
@@ -38,18 +62,16 @@ function CTACentered({
     >
       <Container>
         <FadeIn className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <h2 className="text-3xl leading-[1.1] font-semibold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-4xl lg:text-5xl">
             {title}
           </h2>
           {subtitle && (
-            <p className="text-lg leading-relaxed text-pretty text-muted-foreground">
+            <p className="text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
               {subtitle}
             </p>
           )}
-          <div className="mt-2 flex flex-col items-center gap-3">
-            <Button asChild size="lg">
-              <Link href={action.href}>{action.label}</Link>
-            </Button>
+          <div className="mt-4 flex flex-col items-center gap-4">
+            <CTAButton action={action} />
             {note && <p className="text-sm text-muted-foreground">{note}</p>}
           </div>
         </FadeIn>
@@ -69,9 +91,9 @@ function CTAPanel({
     <Section className={className}>
       <Container>
         <FadeIn>
-          <div className="flex flex-col items-start gap-8 rounded-2xl bg-primary px-6 py-12 text-primary-foreground sm:p-12 lg:flex-row lg:items-center lg:justify-between lg:p-16">
+          <div className="flex flex-col items-start gap-8 rounded-3xl bg-primary px-6 py-14 text-primary-foreground sm:p-14 lg:flex-row lg:items-center lg:justify-between lg:gap-12 lg:p-16">
             <div className="max-w-xl">
-              <h2 className="text-3xl leading-[1.1] font-semibold tracking-tight sm:text-4xl">
+              <h2 className="text-3xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-4xl">
                 {title}
               </h2>
               {subtitle && (
@@ -80,10 +102,8 @@ function CTAPanel({
                 </p>
               )}
             </div>
-            <div className="flex shrink-0 flex-col gap-3">
-              <Button asChild size="lg" variant="secondary">
-                <Link href={action.href}>{action.label}</Link>
-              </Button>
+            <div className="flex shrink-0 flex-col items-start gap-3 lg:items-end">
+              <CTAButton action={action} variant="secondary" />
               {note && (
                 <p className="text-sm text-primary-foreground/70">{note}</p>
               )}
