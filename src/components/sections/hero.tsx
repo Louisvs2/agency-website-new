@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
@@ -21,22 +22,80 @@ interface HeroBaseProps {
   className?: string;
 }
 
-// One primary CTA per view (DESIGN.md §6): the secondary action is
-// deliberately quiet.
+type HeroTone = "default" | "light";
+
+// Refined eyebrow: a quiet bordered pill with a single brand-accent dot.
+// One small piece of "jewelry" that signals a considered product (DESIGN.md §3).
+function HeroEyebrow({
+  children,
+  tone = "default",
+}: {
+  children: string;
+  tone?: HeroTone;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-sm font-medium",
+        tone === "light"
+          ? "border-white/20 bg-white/5 text-white/80"
+          : "border-border bg-muted/40 text-muted-foreground",
+      )}
+    >
+      <span
+        aria-hidden
+        className={cn(
+          "size-1.5 rounded-full",
+          tone === "light" ? "bg-white" : "bg-primary",
+        )}
+      />
+      {children}
+    </span>
+  );
+}
+
+// One primary CTA per view (DESIGN.md §6): the secondary action stays quiet.
+// Mobile-first — buttons stack full-width, then sit in a row from `sm`. The
+// primary gains a premium trailing-arrow micro-interaction on hover.
 function HeroButtons({
   actions,
+  align = "start",
+  tone = "default",
   className,
 }: {
   actions: HeroActions;
+  align?: "start" | "center";
+  tone?: HeroTone;
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-wrap items-center gap-3", className)}>
-      <Button asChild size="lg">
-        <Link href={actions.primary.href}>{actions.primary.label}</Link>
+    <div
+      className={cn(
+        "flex flex-col gap-3 sm:flex-row sm:items-center",
+        align === "center" && "sm:justify-center",
+        className,
+      )}
+    >
+      <Button asChild size="lg" className="group w-full sm:w-auto">
+        <Link href={actions.primary.href}>
+          {actions.primary.label}
+          <ArrowRight
+            aria-hidden
+            className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none"
+          />
+        </Link>
       </Button>
       {actions.secondary && (
-        <Button asChild size="lg" variant="ghost">
+        <Button
+          asChild
+          size="lg"
+          variant={tone === "light" ? "outline" : "ghost"}
+          className={cn(
+            "w-full sm:w-auto",
+            tone === "light" &&
+              "border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white",
+          )}
+        >
           <Link href={actions.secondary.href}>{actions.secondary.label}</Link>
         </Button>
       )}
@@ -44,13 +103,7 @@ function HeroButtons({
   );
 }
 
-function HeroEyebrow({ children }: { children: string }) {
-  return (
-    <p className="text-sm font-medium text-muted-foreground">{children}</p>
-  );
-}
-
-/** Centered hero: the promise front and center, nothing else. */
+/** Centered hero: the promise front and centre, nothing else competing. */
 export function HeroCentered({
   eyebrow,
   title,
@@ -59,16 +112,16 @@ export function HeroCentered({
   className,
 }: HeroBaseProps) {
   return (
-    <Section className={cn("py-24 sm:py-32 lg:py-40", className)}>
+    <Section className={cn("py-28 sm:py-36 lg:py-44", className)}>
       <Container>
-        <FadeInStagger className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
+        <FadeInStagger className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center sm:gap-7">
           {eyebrow && (
             <FadeIn>
               <HeroEyebrow>{eyebrow}</HeroEyebrow>
             </FadeIn>
           )}
           <FadeIn>
-            <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
               {title}
             </h1>
           </FadeIn>
@@ -80,8 +133,8 @@ export function HeroCentered({
             </FadeIn>
           )}
           {actions && (
-            <FadeIn>
-              <HeroButtons actions={actions} className="mt-2 justify-center" />
+            <FadeIn className="pt-2">
+              <HeroButtons actions={actions} align="center" />
             </FadeIn>
           )}
         </FadeInStagger>
@@ -100,35 +153,36 @@ export function HeroSplit({
   className,
 }: HeroBaseProps & { image: SectionImage }) {
   return (
-    <Section className={cn("py-20 sm:py-28 lg:py-32", className)}>
+    <Section className={cn("py-24 sm:py-28 lg:py-32", className)}>
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <FadeInStagger className="flex flex-col gap-6">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <FadeInStagger className="flex flex-col gap-6 sm:gap-7">
             {eyebrow && (
               <FadeIn>
                 <HeroEyebrow>{eyebrow}</HeroEyebrow>
               </FadeIn>
             )}
             <FadeIn>
-              <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight sm:text-5xl">
+              <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl">
                 {title}
               </h1>
             </FadeIn>
             {subtitle && (
               <FadeIn>
-                <p className="text-lg leading-relaxed text-pretty text-muted-foreground">
+                <p className="max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground">
                   {subtitle}
                 </p>
               </FadeIn>
             )}
             {actions && (
-              <FadeIn>
-                <HeroButtons actions={actions} className="mt-2" />
+              <FadeIn className="pt-2">
+                <HeroButtons actions={actions} />
               </FadeIn>
             )}
           </FadeInStagger>
           <FadeIn>
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+            {/* Contained with a hairline ring — elevation is a whisper (DESIGN.md §7). */}
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted ring-1 ring-black/5 dark:ring-white/10">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -145,7 +199,7 @@ export function HeroSplit({
   );
 }
 
-/** Statement hero: a single large, left-aligned claim. Typography only. */
+/** Statement hero: a single large, left-aligned claim carried by type alone. */
 export function HeroStatement({
   eyebrow,
   title,
@@ -154,16 +208,16 @@ export function HeroStatement({
   className,
 }: HeroBaseProps) {
   return (
-    <Section className={cn("py-24 sm:py-32 lg:py-40", className)}>
+    <Section className={cn("py-28 sm:py-36 lg:py-44", className)}>
       <Container>
-        <FadeInStagger className="flex max-w-4xl flex-col gap-6">
+        <FadeInStagger className="flex max-w-4xl flex-col gap-6 sm:gap-8">
           {eyebrow && (
             <FadeIn>
               <HeroEyebrow>{eyebrow}</HeroEyebrow>
             </FadeIn>
           )}
           <FadeIn>
-            <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="text-[2.75rem] leading-[1.03] font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
               {title}
             </h1>
           </FadeIn>
@@ -175,8 +229,8 @@ export function HeroStatement({
             </FadeIn>
           )}
           {actions && (
-            <FadeIn>
-              <HeroButtons actions={actions} className="mt-2" />
+            <FadeIn className="pt-2">
+              <HeroButtons actions={actions} />
             </FadeIn>
           )}
         </FadeInStagger>
@@ -201,7 +255,7 @@ export function HeroFullWidth({
   return (
     <section
       className={cn(
-        "relative isolate flex min-h-[70vh] items-center overflow-hidden py-24 sm:py-32 lg:min-h-[80vh]",
+        "relative isolate flex min-h-[75vh] items-center overflow-hidden py-28 sm:py-36 lg:min-h-[85vh]",
         className,
       )}
     >
@@ -213,24 +267,25 @@ export function HeroFullWidth({
         sizes="100vw"
         className="-z-10 object-cover"
       />
+      {/* Even scrim for legible light text on any image (DESIGN.md §12). */}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-black/55 to-black/65"
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-black/60 via-black/55 to-black/70"
       />
       <Container>
         <FadeInStagger
           className={cn(
-            "flex max-w-3xl flex-col gap-6",
+            "flex max-w-3xl flex-col gap-6 sm:gap-7",
             centered && "mx-auto items-center text-center",
           )}
         >
           {eyebrow && (
             <FadeIn>
-              <p className="text-sm font-medium text-white/70">{eyebrow}</p>
+              <HeroEyebrow tone="light">{eyebrow}</HeroEyebrow>
             </FadeIn>
           )}
           <FadeIn>
-            <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance text-white sm:text-5xl lg:text-6xl">
               {title}
             </h1>
           </FadeIn>
@@ -242,27 +297,12 @@ export function HeroFullWidth({
             </FadeIn>
           )}
           {actions && (
-            <FadeIn
-              className={cn(
-                "mt-2 flex flex-wrap items-center gap-3",
-                centered && "justify-center",
-              )}
-            >
-              <Button asChild size="lg">
-                <Link href={actions.primary.href}>{actions.primary.label}</Link>
-              </Button>
-              {actions.secondary && (
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
-                >
-                  <Link href={actions.secondary.href}>
-                    {actions.secondary.label}
-                  </Link>
-                </Button>
-              )}
+            <FadeIn className="pt-2">
+              <HeroButtons
+                actions={actions}
+                align={centered ? "center" : "start"}
+                tone="light"
+              />
             </FadeIn>
           )}
         </FadeInStagger>
