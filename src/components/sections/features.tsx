@@ -121,7 +121,7 @@ export function ServiceCards({
                 <FadeIn className="h-full">
                   <Link
                     href={service.href}
-                    className="group flex h-full flex-col rounded-xl border bg-card p-6 transition-colors outline-none hover:border-foreground/25 focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:p-8 lg:p-10"
+                    className="group flex h-full flex-col rounded-xl border bg-card p-6 transition outline-none hover:-translate-y-0.5 hover:border-foreground/25 focus-visible:ring-[3px] focus-visible:ring-ring/50 motion-reduce:hover:translate-y-0 sm:p-8 lg:p-10"
                   >
                     <div className="flex items-start justify-between gap-4">
                       {service.icon && <FeatureIcon icon={service.icon} />}

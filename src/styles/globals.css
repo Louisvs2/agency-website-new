@@ -81,6 +81,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  /* Motion system (DESIGN.md §10): one timing + one natural ease-out for
+     every transition utility — hovers, buttons, cards, nav. Fast, elegant,
+     never distracting. Entrances (Framer) use a matching expo-out curve. */
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 @layer base {
@@ -110,5 +115,20 @@
   }
   ::selection {
     @apply bg-primary text-primary-foreground;
+  }
+}
+
+/* Honour prefers-reduced-motion everywhere (DESIGN.md §10): neutralise CSS
+   animations and transitions — including library-driven ones like the mobile
+   drawer — so nothing moves for users who opt out. Framer entrances handle
+   this themselves and degrade to a quiet fade. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

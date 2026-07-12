@@ -18,6 +18,11 @@ const StaggerContext = createContext(false);
 
 const viewport = { once: true } as const;
 
+// Expo-out curve — the fast-in, softly-settling reveal that reads as
+// premium (Linear/Vercel). Paired with a short distance so it never
+// distracts from the content it introduces.
+const EASE_OUT = [0.16, 1, 0.3, 1] as const;
+
 export function FadeIn(props: HTMLMotionProps<"div">) {
   const reduceMotion = useReducedMotion();
   const isInsideStagger = useContext(StaggerContext);
@@ -26,11 +31,11 @@ export function FadeIn(props: HTMLMotionProps<"div">) {
     <LazyMotion features={domAnimation} strict>
       <m.div
         variants={{
-          hidden: { opacity: 0, y: reduceMotion ? 0 : 16 },
+          hidden: { opacity: 0, y: reduceMotion ? 0 : 20 },
           visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.5, ease: "easeOut" },
+            transition: { duration: 0.6, ease: EASE_OUT },
           },
         }}
         // Inside a FadeInStagger the parent orchestrates the variants;
@@ -57,7 +62,7 @@ export function FadeInStagger({
           viewport={viewport}
           variants={{
             visible: {
-              transition: { staggerChildren: fast ? 0.06 : 0.1 },
+              transition: { staggerChildren: fast ? 0.05 : 0.09 },
             },
           }}
           {...props}
