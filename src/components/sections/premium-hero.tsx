@@ -5,11 +5,11 @@ import dynamic from "next/dynamic";
 import { Container } from "@/components/layout/container";
 import { FadeIn, FadeInStagger } from "@/components/motion/fade-in";
 import { HeroButtons, HeroEyebrow } from "@/components/sections/hero";
+import type { PremiumObjectVariant } from "@/components/sections/premium-objects";
 import { use3DCapability } from "@/hooks/use-3d-capability";
 import { cn } from "@/lib/utils";
-import type { Action, HeroObjectPreset } from "@/types/content";
+import type { Action } from "@/types/content";
 
-export type PremiumHeroLighting = "soft" | "studio" | "dramatic";
 export type PremiumHeroCamera = "still" | "float" | "cinematic";
 export type PremiumHeroBackground = "plain" | "gradient" | "atmosphere";
 export type PremiumHeroIntensity = "subtle" | "balanced" | "bold";
@@ -19,9 +19,8 @@ export interface PremiumHeroProps {
   title: string;
   subtitle?: string;
   actions?: { primary: Action; secondary?: Action };
-  /** Which premium object floats in the scene. */
-  variant?: HeroObjectPreset;
-  lighting?: PremiumHeroLighting;
+  /** Which premium object fills the scene. */
+  objectVariant?: PremiumObjectVariant;
   camera?: PremiumHeroCamera;
   background?: PremiumHeroBackground;
   /** Master motion switch — off renders the calm static stage. */
@@ -60,8 +59,7 @@ export function PremiumHero({
   title,
   subtitle,
   actions,
-  variant = "orb",
-  lighting = "studio",
+  objectVariant = "sculpture",
   camera = "cinematic",
   background = "atmosphere",
   motion = true,
@@ -85,8 +83,7 @@ export function PremiumHero({
     >
       {show3D && (
         <PremiumHeroCanvas
-          preset={variant}
-          lighting={lighting}
+          objectVariant={objectVariant}
           camera={camera}
           intensity={intensity}
           parallax={parallax}

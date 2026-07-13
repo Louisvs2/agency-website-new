@@ -2,59 +2,53 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { AdaptiveDpr, ContactShadows, Float } from "@react-three/drei";
+import { AdaptiveDpr, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
+import { StudioEnvironment } from "@/components/sections/hero-scene-canvas";
 import {
-  PresetObject,
-  StudioEnvironment,
-} from "@/components/sections/hero-scene-canvas";
+  PremiumObject,
+  premiumObjectPresets,
+  type PremiumObjectVariant,
+} from "@/components/sections/premium-objects";
 import type {
   PremiumHeroCamera,
   PremiumHeroIntensity,
-  PremiumHeroLighting,
 } from "@/components/sections/premium-hero";
-import type { HeroObjectPreset } from "@/types/content";
 
 export interface PremiumHeroCanvasProps {
-  preset: HeroObjectPreset;
-  lighting?: PremiumHeroLighting;
+  objectVariant: PremiumObjectVariant;
   camera?: PremiumHeroCamera;
   intensity?: PremiumHeroIntensity;
   parallax?: boolean;
   scroll?: boolean;
 }
 
-// Effect amounts per intensity — the single place motion strength is tuned.
+// Camera-motion amounts per intensity — the single place strength is tuned.
 const INTENSITY = {
-  subtle: { float: 0.35, parallax: 0.08, rotate: 0.025, drift: 0.1 },
-  balanced: { float: 0.5, parallax: 0.12, rotate: 0.04, drift: 0.14 },
-  bold: { float: 0.72, parallax: 0.18, rotate: 0.06, drift: 0.2 },
+  subtle: { parallax: 0.08, drift: 0.1 },
+  balanced: { parallax: 0.12, drift: 0.14 },
+  bold: { parallax: 0.18, drift: 0.2 },
 } as const;
 
-// Key / rim / fill balance per lighting mood — soft, studio, or dramatic.
-const LIGHTING = {
-  soft: { key: 0.8, rim: 0.75, fill: 0.34 },
-  studio: { key: 1.15, rim: 1.4, fill: 0.26 },
-  dramatic: { key: 1.5, rim: 1.95, fill: 0.12 },
-} as const;
-
-// One damped, frame-rate-independent rig: cinematic idle drift + a barely-felt
-// roll, mouse parallax on the *camera and key light* (not the object), a
-// minimal object rotation, and a slow dolly-in tied to scroll.
+// The cinematic rig is object-agnostic: it frames and lights whatever
+// PremiumObject is passed (framing + light mood come from the object's preset),
+// then drifts the camera almost imperceptibly, nudges camera + key light with
+// the pointer, and dollies in on scroll. Each object supplies its own
+// animation, so the rig never rotates it.
 function CinematicScene({
-  preset,
-  lighting = "studio",
+  objectVariant,
   camera = "cinematic",
   intensity = "balanced",
   parallax = true,
   scroll = false,
 }: PremiumHeroCanvasProps) {
   const keyLight = useRef<THREE.DirectionalLight>(null);
-  const objectGroup = useRef<THREE.Group>(null);
   const scrollProgress = useRef(0);
   const cfg = INTENSITY[intensity];
-  const light = LIGHTING[lighting];
+  const preset = premiumObjectPresets[objectVariant];
+  const base = preset.camera.position;
+  const light = preset.lighting;
   const moving = camera !== "still";
 
   useEffect(() => {
@@ -79,24 +73,28 @@ function CinematicScene({
     const px = parallax ? p.x * cfg.parallax : 0;
     const py = parallax ? p.y * cfg.parallax : 0;
 
-    // Heavier damping (lower lambda) — the camera carries weight and settles slowly.
-    cam.position.x = THREE.MathUtils.damp(cam.position.x, idleX + px, 1, delta);
-    cam.position.y = THREE.MathUtils.damp(
-      cam.position.y,
-      idleY + py + prog * 0.14,
+    // Heavy damping (low lambda) — the camera carries weight and settles slowly.
+    cam.position.x = THREE.MathUtils.damp(
+      cam.position.x,
+      base[0] + idleX + px,
       1,
       delta,
     );
-    // Scroll is a slow dolly-in — a camera move, not an object spin.
+    cam.position.y = THREE.MathUtils.damp(
+      cam.position.y,
+      base[1] + idleY + py + prog * 0.14,
+      1,
+      delta,
+    );
+    // Scroll is a slow dolly-in, not an object spin.
     cam.position.z = THREE.MathUtils.damp(
       cam.position.z,
-      4.2 - prog * 0.95,
+      base[2] - prog * 0.95,
       1.1,
       delta,
     );
-    cam.lookAt(0, -0.2, 0);
-    // Barely-perceptible cinematic roll (set after lookAt, which resets it).
-    if (moving) cam.rotation.z = Math.sin(t * 0.05) * cfg.rotate * 0.15;
+    cam.lookAt(0, -0.15, 0);
+    if (moving) cam.rotation.z = Math.sin(t * 0.05) * 0.006;
 
     // The key light drifts with the pointer — the light moves, not the object.
     if (keyLight.current) {
@@ -108,18 +106,8 @@ function CinematicScene({
       );
       keyLight.current.position.y = THREE.MathUtils.damp(
         keyLight.current.position.y,
-        4 + (parallax ? p.y * 1 : 0) - prog * 0.6,
+        4 + (parallax ? p.y : 0) - prog * 0.6,
         1,
-        delta,
-      );
-    }
-
-    // The object itself moves only minimally.
-    if (objectGroup.current) {
-      objectGroup.current.rotation.y = THREE.MathUtils.damp(
-        objectGroup.current.rotation.y,
-        (parallax ? p.x * cfg.rotate : 0) + prog * 0.05,
-        1.2,
         delta,
       );
     }
@@ -145,15 +133,11 @@ function CinematicScene({
         intensity={light.rim * 0.7}
         color="#e7e9f0"
       />
-      <group ref={objectGroup} position={[0, -0.72, 0]} scale={1.12}>
-        <Float
-          speed={cfg.float}
-          rotationIntensity={0.05}
-          floatIntensity={cfg.float * 0.4}
-        >
-          <PresetObject preset={preset} />
-        </Float>
+
+      <group position={[0, -0.15, 0]}>
+        <PremiumObject variant={objectVariant} />
       </group>
+
       <ContactShadows
         position={[0, -2, 0]}
         opacity={0.45}
@@ -177,13 +161,15 @@ export function PremiumHeroCanvas(props: PremiumHeroCanvasProps) {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
+  const preset = premiumObjectPresets[props.objectVariant];
+
   return (
     <Canvas
       style={{ position: "absolute", inset: 0 }}
       dpr={[1, 1.75]}
       frameloop={active ? "always" : "never"}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 4.2], fov: 38 }}
+      camera={{ position: preset.camera.position, fov: preset.camera.fov }}
     >
       <AdaptiveDpr pixelated />
       <CinematicScene {...props} />

@@ -66,18 +66,57 @@ export default function HeroShowcasePage() {
   return (
     <main className="pb-24">
       <PremiumHero
-        eyebrow="Studio"
-        title="Außergewöhnlich — vom ersten Moment an."
-        subtitle="Eine ruhige, cinematische Bühne: hochwertiges Studio-Licht, ein schwebendes Objekt und Bewegung, die man eher fühlt als sieht."
+        eyebrow="Sculpture"
+        title="Kunst, die im Raum steht."
+        subtitle="Eine skulpturale Form, ruhig gedreht in einer cinematischen Studio-Bühne."
         actions={{
           primary: { label: "Projekt starten", href: "#" },
           secondary: { label: "Arbeiten ansehen", href: "#" },
         }}
-        variant="orb"
-        lighting="studio"
+        objectVariant="sculpture"
         camera="cinematic"
         background="atmosphere"
         intensity="balanced"
+      />
+
+      <VariantLabel>Premium Object — Glass</VariantLabel>
+      <PremiumHero
+        eyebrow="Glass"
+        title="Transparenz als Statement."
+        subtitle="Mehrere Glasschichten, die Licht brechen und reflektieren — wie ein Luxusobjekt."
+        actions={{ primary: { label: "Mehr erfahren", href: "#" } }}
+        objectVariant="glass"
+        background="atmosphere"
+      />
+
+      <VariantLabel>Premium Object — Metal</VariantLabel>
+      <PremiumHero
+        eyebrow="Metal"
+        title="Gebürstetes Aluminium."
+        subtitle="Minimalistische Industrial-Design-Form mit anisotropem Metall-Finish."
+        actions={{ primary: { label: "Mehr erfahren", href: "#" } }}
+        objectVariant="metal"
+        background="atmosphere"
+      />
+
+      <VariantLabel>Premium Object — Architecture</VariantLabel>
+      <PremiumHero
+        eyebrow="Architecture"
+        title="Ein Modell aus Beton und Glas."
+        subtitle="Abstrakte Architektur: Stufen, Platten und eine Glasfläche wie ein Architekturmodell."
+        actions={{ primary: { label: "Mehr erfahren", href: "#" } }}
+        objectVariant="architecture"
+        background="atmosphere"
+      />
+
+      <VariantLabel>Premium Object — Fold</VariantLabel>
+      <PremiumHero
+        eyebrow="Fold"
+        title="Gefaltete Fläche."
+        subtitle="Eine organisch gefaltete Oberfläche — wie hochwertiges Papier oder Stoff."
+        actions={{ primary: { label: "Mehr erfahren", href: "#" } }}
+        objectVariant="fold"
+        background="atmosphere"
       />
 
       <VariantLabel>Editorial Hero</VariantLabel>
