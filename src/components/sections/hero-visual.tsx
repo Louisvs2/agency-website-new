@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useReducedMotion } from "motion/react";
 
+import { HeroScene } from "@/components/sections/hero-scene";
 import { cn } from "@/lib/utils";
 import type { HeroMedia } from "@/types/content";
 
@@ -31,6 +32,19 @@ export function HeroVisual({
   className,
 }: HeroVisualProps) {
   const reduceMotion = useReducedMotion();
+
+  if (media.type === "scene") {
+    return (
+      <HeroScene
+        preset={media.preset}
+        parallax={media.parallax}
+        scroll={media.scroll}
+        cameraMotion={media.cameraMotion}
+        ariaLabel={media.alt}
+        className={className}
+      />
+    );
+  }
 
   if (media.type === "video") {
     return (

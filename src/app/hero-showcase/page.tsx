@@ -33,6 +33,22 @@ const objectMedia: HeroMedia = {
   alt: "Platzhalter: freigestelltes Produktobjekt",
 };
 
+const glassScene: HeroMedia = {
+  type: "scene",
+  preset: "glass",
+  parallax: true,
+  cameraMotion: true,
+  alt: "Schwebendes Glasobjekt in einer Studioumgebung",
+};
+
+const chromeScene: HeroMedia = {
+  type: "scene",
+  preset: "chrome",
+  parallax: true,
+  cameraMotion: true,
+  alt: "Schwebendes Chromobjekt in einer Studioumgebung",
+};
+
 function VariantLabel({ children }: { children: string }) {
   return (
     <Container>
@@ -82,6 +98,30 @@ export default function HeroShowcasePage() {
           secondary: { label: "Mehr erfahren", href: "#" },
         }}
         media={objectMedia}
+      />
+
+      <VariantLabel>Hero Engine — 3D Szene (Glass)</VariantLabel>
+      <HeroSplit
+        eyebrow="Hero Engine"
+        title="Echtzeit-3D, das sofort einen Moment schafft."
+        subtitle="Realistisches Licht, weiche Schatten und ruhige Bewegung — reagiert auf die Maus und fällt auf schwächeren Geräten sauber auf eine stille Bühne zurück."
+        actions={{
+          primary: { label: "Mehr erfahren", href: "#" },
+          secondary: { label: "Presets", href: "#" },
+        }}
+        media={glassScene}
+      />
+
+      <VariantLabel>Hero Engine — 3D Szene (Chrome, zentriert)</VariantLabel>
+      <HeroObject
+        eyebrow="Hero Engine"
+        title="Ein Objekt, das im Raum schwebt."
+        subtitle="Sieben konfigurierbare Presets von Glas bis Architektur — vollständig über Props steuerbar."
+        actions={{
+          primary: { label: "Jetzt entdecken", href: "#" },
+          secondary: { label: "Dokumentation", href: "#" },
+        }}
+        media={chromeScene}
       />
     </main>
   );
