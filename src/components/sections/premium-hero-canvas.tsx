@@ -27,16 +27,16 @@ export interface PremiumHeroCanvasProps {
 
 // Effect amounts per intensity — the single place motion strength is tuned.
 const INTENSITY = {
-  subtle: { float: 0.5, parallax: 0.1, rotate: 0.05, drift: 0.14 },
-  balanced: { float: 0.7, parallax: 0.16, rotate: 0.08, drift: 0.2 },
-  bold: { float: 1, parallax: 0.24, rotate: 0.12, drift: 0.28 },
+  subtle: { float: 0.35, parallax: 0.08, rotate: 0.025, drift: 0.1 },
+  balanced: { float: 0.5, parallax: 0.12, rotate: 0.04, drift: 0.14 },
+  bold: { float: 0.72, parallax: 0.18, rotate: 0.06, drift: 0.2 },
 } as const;
 
 // Key / rim / fill balance per lighting mood — soft, studio, or dramatic.
 const LIGHTING = {
-  soft: { key: 0.7, rim: 0.55, fill: 0.4 },
-  studio: { key: 1.05, rim: 1, fill: 0.32 },
-  dramatic: { key: 1.35, rim: 1.5, fill: 0.16 },
+  soft: { key: 0.8, rim: 0.75, fill: 0.34 },
+  studio: { key: 1.15, rim: 1.4, fill: 0.26 },
+  dramatic: { key: 1.5, rim: 1.95, fill: 0.12 },
 } as const;
 
 // One damped, frame-rate-independent rig: cinematic idle drift + a barely-felt
@@ -74,45 +74,42 @@ function CinematicScene({
     const cam = state.camera;
     const prog = scroll ? scrollProgress.current : 0;
 
-    const idleX = moving ? Math.sin(t * 0.12) * cfg.drift : 0;
-    const idleY = moving ? Math.cos(t * 0.09) * cfg.drift * 0.7 : 0;
+    const idleX = moving ? Math.sin(t * 0.08) * cfg.drift : 0;
+    const idleY = moving ? Math.cos(t * 0.06) * cfg.drift * 0.7 : 0;
     const px = parallax ? p.x * cfg.parallax : 0;
     const py = parallax ? p.y * cfg.parallax : 0;
 
-    cam.position.x = THREE.MathUtils.damp(
-      cam.position.x,
-      idleX + px,
-      1.5,
-      delta,
-    );
+    // Heavier damping (lower lambda) — the camera carries weight and settles slowly.
+    cam.position.x = THREE.MathUtils.damp(cam.position.x, idleX + px, 1, delta);
     cam.position.y = THREE.MathUtils.damp(
       cam.position.y,
-      idleY + py + prog * 0.1,
-      1.5,
+      idleY + py + prog * 0.14,
+      1,
       delta,
     );
+    // Scroll is a slow dolly-in — a camera move, not an object spin.
     cam.position.z = THREE.MathUtils.damp(
       cam.position.z,
-      5 - prog * 0.6,
-      1.8,
+      4.2 - prog * 0.95,
+      1.1,
       delta,
     );
-    cam.lookAt(0, -0.1, 0);
+    cam.lookAt(0, -0.2, 0);
     // Barely-perceptible cinematic roll (set after lookAt, which resets it).
-    if (moving) cam.rotation.z = Math.sin(t * 0.07) * cfg.rotate * 0.15;
+    if (moving) cam.rotation.z = Math.sin(t * 0.05) * cfg.rotate * 0.15;
 
     // The key light drifts with the pointer — the light moves, not the object.
     if (keyLight.current) {
       keyLight.current.position.x = THREE.MathUtils.damp(
         keyLight.current.position.x,
         3 + (parallax ? p.x * 1.4 : 0),
-        1.4,
+        1,
         delta,
       );
       keyLight.current.position.y = THREE.MathUtils.damp(
         keyLight.current.position.y,
         4 + (parallax ? p.y * 1 : 0) - prog * 0.6,
-        1.4,
+        1,
         delta,
       );
     }
@@ -121,8 +118,8 @@ function CinematicScene({
     if (objectGroup.current) {
       objectGroup.current.rotation.y = THREE.MathUtils.damp(
         objectGroup.current.rotation.y,
-        (parallax ? p.x * cfg.rotate : 0) + prog * 0.22,
-        2,
+        (parallax ? p.x * cfg.rotate : 0) + prog * 0.05,
+        1.2,
         delta,
       );
     }
@@ -148,21 +145,21 @@ function CinematicScene({
         intensity={light.rim * 0.7}
         color="#e7e9f0"
       />
-      <group ref={objectGroup} position={[0, -0.55, 0]}>
+      <group ref={objectGroup} position={[0, -0.72, 0]} scale={1.12}>
         <Float
           speed={cfg.float}
-          rotationIntensity={0.12}
-          floatIntensity={cfg.float * 0.5}
+          rotationIntensity={0.05}
+          floatIntensity={cfg.float * 0.4}
         >
           <PresetObject preset={preset} />
         </Float>
       </group>
       <ContactShadows
-        position={[0, -1.75, 0]}
-        opacity={0.38}
-        scale={10}
-        blur={2.9}
-        far={5}
+        position={[0, -2, 0]}
+        opacity={0.45}
+        scale={11}
+        blur={3}
+        far={5.5}
         resolution={512}
         color="#000000"
       />
@@ -186,7 +183,7 @@ export function PremiumHeroCanvas(props: PremiumHeroCanvasProps) {
       dpr={[1, 1.75]}
       frameloop={active ? "always" : "never"}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: [0, 0, 5], fov: 35 }}
+      camera={{ position: [0, 0, 4.2], fov: 38 }}
     >
       <AdaptiveDpr pixelated />
       <CinematicScene {...props} />

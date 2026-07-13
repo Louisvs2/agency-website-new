@@ -102,7 +102,7 @@ export function PremiumHero({
             className="pointer-events-none absolute inset-0 z-[1]"
             style={{
               background:
-                "radial-gradient(120% 100% at 50% 32%, transparent 55%, rgba(0,0,0,0.1) 100%)",
+                "radial-gradient(120% 100% at 50% 30%, transparent 50%, rgba(0,0,0,0.16) 100%)",
             }}
           />
           <div
