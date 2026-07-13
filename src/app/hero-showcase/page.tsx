@@ -119,6 +119,19 @@ export default function HeroShowcasePage() {
         background="atmosphere"
       />
 
+      <VariantLabel>
+        Premium Asset — Fallback (kein Asset registriert)
+      </VariantLabel>
+      <PremiumHero
+        eyebrow="Asset Pipeline"
+        title="GLB-Assets mit sauberem Fallback."
+        subtitle="Ist ein Asset registriert, wird es geladen (lazy, Suspense, Fehler-Fallback). Sonst greift automatisch das prozedurale Objekt — hier die Skulptur."
+        actions={{ primary: { label: "Doku ansehen", href: "#" } }}
+        asset="obsidian-monolith"
+        objectVariant="sculpture"
+        background="atmosphere"
+      />
+
       <VariantLabel>Editorial Hero</VariantLabel>
       <HeroEditorial
         eyebrow="Studio"

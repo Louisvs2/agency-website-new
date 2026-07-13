@@ -19,8 +19,10 @@ export interface PremiumHeroProps {
   title: string;
   subtitle?: string;
   actions?: { primary: Action; secondary?: Action };
-  /** Which premium object fills the scene. */
+  /** Which procedural object fills the scene (the fallback). */
   objectVariant?: PremiumObjectVariant;
+  /** Registered GLB asset id — used instead of the object when it exists. */
+  asset?: string;
   camera?: PremiumHeroCamera;
   background?: PremiumHeroBackground;
   /** Master motion switch — off renders the calm static stage. */
@@ -60,6 +62,7 @@ export function PremiumHero({
   subtitle,
   actions,
   objectVariant = "sculpture",
+  asset,
   camera = "cinematic",
   background = "atmosphere",
   motion = true,
@@ -84,6 +87,7 @@ export function PremiumHero({
       {show3D && (
         <PremiumHeroCanvas
           objectVariant={objectVariant}
+          asset={asset}
           camera={camera}
           intensity={intensity}
           parallax={parallax}

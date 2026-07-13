@@ -6,6 +6,7 @@ import { AdaptiveDpr, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
 import { StudioEnvironment } from "@/components/sections/hero-scene-canvas";
+import { PremiumAsset } from "@/components/sections/premium-asset";
 import {
   PremiumObject,
   premiumObjectPresets,
@@ -15,9 +16,12 @@ import type {
   PremiumHeroCamera,
   PremiumHeroIntensity,
 } from "@/components/sections/premium-hero";
+import { resolvePremiumAsset } from "@/config/premium-assets";
 
 export interface PremiumHeroCanvasProps {
   objectVariant: PremiumObjectVariant;
+  /** When set and registered, the GLB asset is rendered instead of the object. */
+  asset?: string;
   camera?: PremiumHeroCamera;
   intensity?: PremiumHeroIntensity;
   parallax?: boolean;
@@ -38,6 +42,7 @@ const INTENSITY = {
 // animation, so the rig never rotates it.
 function CinematicScene({
   objectVariant,
+  asset,
   camera = "cinematic",
   intensity = "balanced",
   parallax = true,
@@ -46,9 +51,12 @@ function CinematicScene({
   const keyLight = useRef<THREE.DirectionalLight>(null);
   const scrollProgress = useRef(0);
   const cfg = INTENSITY[intensity];
-  const preset = premiumObjectPresets[objectVariant];
-  const base = preset.camera.position;
-  const light = preset.lighting;
+  // An asset, when registered, owns the stage framing + light mood; otherwise
+  // the procedural object's preset does. Either way the rig is identical.
+  const assetDef = resolvePremiumAsset(asset);
+  const stage = assetDef ?? premiumObjectPresets[objectVariant];
+  const base = stage.camera.position;
+  const light = stage.lighting;
   const moving = camera !== "still";
 
   useEffect(() => {
@@ -135,7 +143,11 @@ function CinematicScene({
       />
 
       <group position={[0, -0.15, 0]}>
-        <PremiumObject variant={objectVariant} />
+        {assetDef ? (
+          <PremiumAsset asset={assetDef.id} />
+        ) : (
+          <PremiumObject variant={objectVariant} />
+        )}
       </group>
 
       <ContactShadows
@@ -161,7 +173,8 @@ export function PremiumHeroCanvas(props: PremiumHeroCanvasProps) {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
-  const preset = premiumObjectPresets[props.objectVariant];
+  const assetDef = resolvePremiumAsset(props.asset);
+  const stage = assetDef ?? premiumObjectPresets[props.objectVariant];
 
   return (
     <Canvas
@@ -169,7 +182,7 @@ export function PremiumHeroCanvas(props: PremiumHeroCanvasProps) {
       dpr={[1, 1.75]}
       frameloop={active ? "always" : "never"}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      camera={{ position: preset.camera.position, fov: preset.camera.fov }}
+      camera={{ position: stage.camera.position, fov: stage.camera.fov }}
     >
       <AdaptiveDpr pixelated />
       <CinematicScene {...props} />
