@@ -55,33 +55,6 @@ export interface HeroObjectMedia {
   alt: string;
 }
 
-/** Object presets for the 3D Hero Engine (see HeroScene). */
-export type HeroObjectPreset =
-  | "glass"
-  | "chrome"
-  | "marble"
-  | "abstract"
-  | "architecture"
-  | "orb"
-  | "product";
-
-/** A live 3D scene rendered by the Hero Engine. Falls back to a quiet stage
- *  on low-end devices and under prefers-reduced-motion. */
-export interface HeroSceneMedia {
-  type: "scene";
-  /** Which premium object to float in the scene. */
-  preset: HeroObjectPreset;
-  /** Tie subtle object rotation to mouse movement (default true). */
-  parallax?: boolean;
-  /** Let page scroll nudge the object (default false). */
-  scroll?: boolean;
-  /** Subtle idle camera drift (default true). */
-  cameraMotion?: boolean;
-  /** Accessible label for the decorative scene. */
-  alt: string;
-}
-
 /** Optional hero visual, discriminated by `type`. The Hero System renders
  *  each kind with its own premium treatment (see HeroVisual). */
-export type HeroMedia =
-  HeroImageMedia | HeroVideoMedia | HeroObjectMedia | HeroSceneMedia;
+export type HeroMedia = HeroImageMedia | HeroVideoMedia | HeroObjectMedia;
