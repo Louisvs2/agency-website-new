@@ -25,7 +25,7 @@ export interface HeroSceneCanvasProps {
 
 // Each preset is a geometry + material tuned for a premium look. Reflections
 // come from the procedural studio environment below — no external HDR asset.
-function PresetObject({ preset }: { preset: HeroObjectPreset }) {
+export function PresetObject({ preset }: { preset: HeroObjectPreset }) {
   switch (preset) {
     case "glass":
       return (
@@ -154,7 +154,7 @@ function PresetObject({ preset }: { preset: HeroObjectPreset }) {
 
 // A studio HDRI built from area lights — premium reflections without shipping
 // or fetching an HDR file.
-function StudioEnvironment() {
+export function StudioEnvironment() {
   return (
     <Environment resolution={256}>
       <Lightformer

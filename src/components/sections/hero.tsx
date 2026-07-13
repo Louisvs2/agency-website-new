@@ -27,7 +27,7 @@ type HeroTone = "default" | "light";
 
 // Refined eyebrow: a quiet bordered pill with a single brand-accent dot.
 // One small piece of "jewelry" that signals a considered product (DESIGN.md §3).
-function HeroEyebrow({
+export function HeroEyebrow({
   children,
   tone = "default",
 }: {
@@ -58,7 +58,7 @@ function HeroEyebrow({
 // One primary CTA per view (DESIGN.md §6): the secondary action stays quiet.
 // Mobile-first — buttons stack full-width, then sit in a row from `sm`. The
 // primary gains a premium trailing-arrow micro-interaction on hover.
-function HeroButtons({
+export function HeroButtons({
   actions,
   align = "start",
   tone = "default",

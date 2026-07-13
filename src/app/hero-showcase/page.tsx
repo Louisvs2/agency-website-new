@@ -6,6 +6,7 @@ import {
   HeroObject,
   HeroSplit,
 } from "@/components/sections/hero";
+import { PremiumHero } from "@/components/sections/premium-hero";
 import type { HeroMedia } from "@/types/content";
 
 // Temporary internal review page for the Hero System. Not linked anywhere and
@@ -64,6 +65,21 @@ function VariantLabel({ children }: { children: string }) {
 export default function HeroShowcasePage() {
   return (
     <main className="pb-24">
+      <PremiumHero
+        eyebrow="Studio"
+        title="Außergewöhnlich — vom ersten Moment an."
+        subtitle="Eine ruhige, cinematische Bühne: hochwertiges Studio-Licht, ein schwebendes Objekt und Bewegung, die man eher fühlt als sieht."
+        actions={{
+          primary: { label: "Projekt starten", href: "#" },
+          secondary: { label: "Arbeiten ansehen", href: "#" },
+        }}
+        variant="orb"
+        lighting="studio"
+        camera="cinematic"
+        background="atmosphere"
+        intensity="balanced"
+      />
+
       <VariantLabel>Editorial Hero</VariantLabel>
       <HeroEditorial
         eyebrow="Studio"

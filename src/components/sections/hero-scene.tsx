@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { useReducedMotion } from "motion/react";
 
+import { use3DCapability } from "@/hooks/use-3d-capability";
 import { cn } from "@/lib/utils";
 import type { HeroObjectPreset } from "@/types/content";
 
@@ -25,21 +24,6 @@ const HeroSceneCanvas = dynamic(
   { ssr: false },
 );
 
-interface NavigatorCapabilities {
-  hardwareConcurrency?: number;
-  deviceMemory?: number;
-  connection?: { saveData?: boolean };
-}
-
-function hasWebGL(): boolean {
-  try {
-    const canvas = document.createElement("canvas");
-    return !!(canvas.getContext("webgl2") ?? canvas.getContext("webgl"));
-  } catch {
-    return false;
-  }
-}
-
 /**
  * Reusable 3D Hero Engine. Floats a configurable premium object in a studio
  * environment with soft shadows, idle float, damped mouse parallax and
@@ -55,39 +39,7 @@ export function HeroScene({
   className,
   ariaLabel = "Interaktive 3D-Szene",
 }: HeroSceneProps) {
-  const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [capable, setCapable] = useState(false);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    if (reduceMotion) {
-      setCapable(false);
-      return;
-    }
-    const nav = navigator as unknown as NavigatorCapabilities;
-    const cores = nav.hardwareConcurrency ?? 8;
-    const memory = nav.deviceMemory ?? 8;
-    const saveData = nav.connection?.saveData ?? false;
-    const lowEnd = cores <= 4 || memory <= 4 || saveData;
-    setCapable(hasWebGL() && !lowEnd);
-  }, [reduceMotion]);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { containerRef, render3D } = use3DCapability();
 
   return (
     <div
@@ -99,7 +51,7 @@ export function HeroScene({
         className,
       )}
     >
-      {capable && inView && (
+      {render3D && (
         <HeroSceneCanvas
           preset={preset}
           parallax={parallax}
