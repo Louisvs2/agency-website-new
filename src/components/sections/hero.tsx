@@ -5,9 +5,10 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { FadeIn, FadeInStagger } from "@/components/motion/fade-in";
+import { HeroVisual } from "@/components/sections/hero-visual";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { Action, SectionImage } from "@/types/content";
+import type { Action, HeroMedia, SectionImage } from "@/types/content";
 
 interface HeroActions {
   primary: Action;
@@ -143,20 +144,30 @@ export function HeroCentered({
   );
 }
 
-/** Split hero: copy left, image right. The image is the LCP element. */
+/**
+ * Split hero: copy on one side, visual on the other. The visual — image,
+ * video, or floating object — is the LCP element. Set `reversed` to place
+ * the visual on the left. Part of the premium Hero System.
+ */
 export function HeroSplit({
   eyebrow,
   title,
   subtitle,
   actions,
-  image,
+  media,
+  reversed = false,
   className,
-}: HeroBaseProps & { image: SectionImage }) {
+}: HeroBaseProps & { media: HeroMedia; reversed?: boolean }) {
   return (
     <Section className={cn("py-24 sm:py-28 lg:py-32", className)}>
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <FadeInStagger className="flex flex-col gap-6 sm:gap-7">
+          <FadeInStagger
+            className={cn(
+              "flex flex-col gap-6 sm:gap-7",
+              reversed && "lg:order-2",
+            )}
+          >
             {eyebrow && (
               <FadeIn>
                 <HeroEyebrow>{eyebrow}</HeroEyebrow>
@@ -180,18 +191,12 @@ export function HeroSplit({
               </FadeIn>
             )}
           </FadeInStagger>
-          <FadeIn>
-            {/* Contained with a hairline ring — elevation is a whisper (DESIGN.md §7). */}
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted ring-1 ring-black/5 dark:ring-white/10">
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
+          <FadeIn className={cn(reversed && "lg:order-1")}>
+            <HeroVisual
+              media={media}
+              priority
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
           </FadeIn>
         </div>
       </Container>
@@ -308,5 +313,118 @@ export function HeroFullWidth({
         </FadeInStagger>
       </Container>
     </section>
+  );
+}
+
+/**
+ * Editorial hero: a magazine-grade, typography-led opener. A large headline
+ * sits above a hairline rule, with the lead paragraph offset to the right and
+ * the actions anchored left — an intentional asymmetry. An optional wide
+ * visual band closes it. Part of the premium Hero System.
+ */
+export function HeroEditorial({
+  eyebrow,
+  title,
+  subtitle,
+  actions,
+  media,
+  className,
+}: HeroBaseProps & { media?: HeroMedia }) {
+  return (
+    <Section className={cn("py-28 sm:py-36 lg:py-44", className)}>
+      <Container>
+        <FadeInStagger className="flex flex-col gap-8 sm:gap-10">
+          {eyebrow && (
+            <FadeIn>
+              <HeroEyebrow>{eyebrow}</HeroEyebrow>
+            </FadeIn>
+          )}
+          <FadeIn>
+            <h1 className="max-w-4xl text-[2.75rem] leading-[1.03] font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
+              {title}
+            </h1>
+          </FadeIn>
+          {(subtitle || actions) && (
+            <FadeIn>
+              <div className="grid gap-6 border-t pt-8 sm:gap-8 lg:grid-cols-12">
+                {actions && (
+                  <div className="lg:col-span-5 lg:col-start-1 lg:row-start-1">
+                    <HeroButtons actions={actions} />
+                  </div>
+                )}
+                {subtitle && (
+                  <p className="text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl lg:col-span-6 lg:col-start-7">
+                    {subtitle}
+                  </p>
+                )}
+              </div>
+            </FadeIn>
+          )}
+          {media && (
+            <FadeIn>
+              <HeroVisual
+                media={media}
+                priority
+                sizes="100vw"
+                className="aspect-[16/9] lg:aspect-[21/9]"
+              />
+            </FadeIn>
+          )}
+        </FadeInStagger>
+      </Container>
+    </Section>
+  );
+}
+
+/**
+ * Premium object hero: centred copy above a large stage where the visual —
+ * ideally a floating cut-out object — takes centre stage on a soft plinth
+ * (Apple-grade product treatment). Part of the premium Hero System.
+ */
+export function HeroObject({
+  eyebrow,
+  title,
+  subtitle,
+  actions,
+  media,
+  className,
+}: HeroBaseProps & { media: HeroMedia }) {
+  return (
+    <Section className={cn("py-24 sm:py-32 lg:py-36", className)}>
+      <Container>
+        <FadeInStagger className="flex flex-col items-center gap-6 text-center sm:gap-7">
+          {eyebrow && (
+            <FadeIn>
+              <HeroEyebrow>{eyebrow}</HeroEyebrow>
+            </FadeIn>
+          )}
+          <FadeIn>
+            <h1 className="max-w-3xl text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+              {title}
+            </h1>
+          </FadeIn>
+          {subtitle && (
+            <FadeIn>
+              <p className="max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-xl">
+                {subtitle}
+              </p>
+            </FadeIn>
+          )}
+          {actions && (
+            <FadeIn className="pt-2">
+              <HeroButtons actions={actions} align="center" />
+            </FadeIn>
+          )}
+          <FadeIn className="mt-8 w-full max-w-4xl sm:mt-12">
+            <HeroVisual
+              media={media}
+              priority
+              sizes="(min-width: 1024px) 56rem, 100vw"
+              className="aspect-[16/10]"
+            />
+          </FadeIn>
+        </FadeInStagger>
+      </Container>
+    </Section>
   );
 }
