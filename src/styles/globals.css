@@ -8,6 +8,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Keep Claude's vendored design skills out of Tailwind's class scanning —
+ * their example markup must never leak utilities into the shipped CSS. */
+@source not "../../.claude";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
