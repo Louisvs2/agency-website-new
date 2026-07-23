@@ -1,4 +1,4 @@
-import { Fraunces, Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
 // Client font swap: replace these fonts, then update the --font-sans /
 // --font-display mapping in src/styles/globals.css. Fonts must be loaded via
@@ -11,12 +11,10 @@ export const fontSans = Inter({
   display: "swap",
 });
 
-// Display — a high-contrast editorial serif for headlines. The optical-size
-// axis lets large headings pick up more contrast and character, giving the
-// whole site a considered, magazine-grade presence.
-export const fontDisplay = Fraunces({
+// Display — a modern, slightly technical grotesque for headlines. Tight,
+// characterful letterforms that pair naturally with a glass / neon aesthetic.
+export const fontDisplay = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-space-grotesk",
   display: "swap",
-  axes: ["opsz"],
 });

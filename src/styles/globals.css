@@ -74,7 +74,8 @@
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-display:
+    var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);
@@ -127,11 +128,10 @@
   h4,
   h5,
   h6 {
-    /* Serif display wants a gentler track than a grotesque — tight enough to
-       feel deliberate, open enough to keep the high-contrast letterforms
-       breathing. Optical sizing adds character at large sizes. */
-    @apply font-display leading-tight font-semibold tracking-[-0.015em] text-balance;
-    font-optical-sizing: auto;
+    /* Modern grotesque display — tight tracking and tight leading give the
+       headlines a confident, engineered feel. Component utilities set the
+       size per level so the hierarchy stays intact. */
+    @apply font-display leading-tight font-semibold tracking-tight text-balance;
   }
   /* Even wrapping and comfortable measure for body copy by default. */
   p {

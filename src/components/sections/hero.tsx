@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { FadeIn, FadeInStagger } from "@/components/motion/fade-in";
+import { Magnetic } from "@/components/motion/magnetic";
 import { HeroVisual } from "@/components/sections/hero-visual";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -37,10 +38,10 @@ export function HeroEyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-sm font-medium",
+        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-sm font-medium shadow-sm backdrop-blur-md",
         tone === "light"
           ? "border-white/20 bg-white/5 text-white/80"
-          : "border-border bg-muted/40 text-muted-foreground",
+          : "border-border/60 bg-background/50 text-muted-foreground",
       )}
     >
       <span
@@ -77,15 +78,21 @@ export function HeroButtons({
         className,
       )}
     >
-      <Button asChild size="lg" className="group w-full sm:w-auto">
-        <Link href={actions.primary.href}>
-          {actions.primary.label}
-          <ArrowRight
-            aria-hidden
-            className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none"
-          />
-        </Link>
-      </Button>
+      <Magnetic className="w-full sm:w-auto">
+        <Button
+          asChild
+          size="lg"
+          className="group w-full shadow-[0_14px_44px_-16px_color-mix(in_oklch,var(--brand)_55%,transparent)] transition-shadow duration-300 hover:shadow-[0_20px_60px_-14px_color-mix(in_oklch,var(--brand)_70%,transparent)] sm:w-auto"
+        >
+          <Link href={actions.primary.href}>
+            {actions.primary.label}
+            <ArrowRight
+              aria-hidden
+              className="transition-transform duration-300 ease-out group-hover:translate-x-0.5 motion-reduce:transition-none"
+            />
+          </Link>
+        </Button>
+      </Magnetic>
       {actions.secondary && (
         <Button
           asChild

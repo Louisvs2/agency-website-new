@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { ArrowUpRight, type LucideIcon } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Section, type SectionBackground } from "@/components/layout/section";
 import { FadeIn, FadeInStagger } from "@/components/motion/fade-in";
+import { SpotlightCard } from "@/components/motion/spotlight-card";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { cn } from "@/lib/utils";
 import type { SectionIntro } from "@/types/content";
@@ -29,7 +29,7 @@ interface FeaturesBaseProps {
 
 function FeatureIcon({ icon: Icon }: { icon: LucideIcon }) {
   return (
-    <div className="flex size-10 items-center justify-center rounded-lg bg-muted">
+    <div className="flex size-11 items-center justify-center rounded-xl border border-border/60 bg-background/60 backdrop-blur-md transition-colors group-hover:border-brand/40 group-hover:text-brand">
       <Icon className="size-5" aria-hidden />
     </div>
   );
@@ -111,7 +111,19 @@ export function ServiceCards({
   className,
 }: FeaturesBaseProps & { items: Service[] }) {
   return (
-    <Section background={background} className={className}>
+    <Section
+      background={background}
+      className={cn("relative isolate overflow-hidden", className)}
+    >
+      {/* Soft brand glow — gives the frosted cards something to blur against. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-1/3 left-1/2 -z-10 h-[34rem] w-[64rem] max-w-[130%] -translate-x-1/2 rounded-full opacity-[0.1] blur-3xl"
+        style={{
+          background:
+            "radial-gradient(closest-side, var(--brand), transparent)",
+        }}
+      />
       <Container>
         {intro && <SectionHeading {...intro} />}
         <FadeInStagger fast className={cn(intro && "mt-14 sm:mt-20")}>
@@ -119,24 +131,21 @@ export function ServiceCards({
             {items.map((service) => (
               <li key={service.href}>
                 <FadeIn className="h-full">
-                  <Link
-                    href={service.href}
-                    className="group flex h-full flex-col rounded-xl border bg-card p-6 transition outline-none hover:-translate-y-0.5 hover:border-foreground/25 focus-visible:ring-[3px] focus-visible:ring-ring/50 motion-reduce:hover:translate-y-0 sm:p-8 lg:p-10"
-                  >
+                  <SpotlightCard href={service.href}>
                     <div className="flex items-start justify-between gap-4">
                       {service.icon && <FeatureIcon icon={service.icon} />}
                       <ArrowUpRight
                         aria-hidden
-                        className="ml-auto size-5 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
+                        className="ml-auto size-5 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
                       />
                     </div>
-                    <h3 className="mt-4 text-base font-medium">
+                    <h3 className="mt-5 text-base font-medium">
                       {service.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {service.description}
                     </p>
-                  </Link>
+                  </SpotlightCard>
                 </FadeIn>
               </li>
             ))}
