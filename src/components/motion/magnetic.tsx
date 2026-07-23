@@ -27,10 +27,20 @@ export function Magnetic({
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // The active look sets how strongly (or whether) the element leans — flat
+    // looks set it to 0, disabling the effect. Falls back to the prop.
+    const fromLook = parseFloat(
+      getComputedStyle(el).getPropertyValue("--magnet-strength"),
+    );
+    const pull = Number.isFinite(fromLook) ? fromLook : strength;
+    if (!pull) {
+      el.style.transform = "";
+      return;
+    }
     const rect = el.getBoundingClientRect();
     const x = e.clientX - (rect.left + rect.width / 2);
     const y = e.clientY - (rect.top + rect.height / 2);
-    el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+    el.style.transform = `translate(${x * pull}px, ${y * pull}px)`;
   }
 
   function reset() {

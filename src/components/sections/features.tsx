@@ -29,7 +29,7 @@ interface FeaturesBaseProps {
 
 function FeatureIcon({ icon: Icon }: { icon: LucideIcon }) {
   return (
-    <div className="flex size-11 items-center justify-center rounded-xl border border-border/60 bg-background/60 backdrop-blur-md transition-colors group-hover:border-brand/40 group-hover:text-brand">
+    <div className="flex size-11 items-center justify-center rounded-xl border border-border/60 bg-background/60 backdrop-blur-[var(--glass-blur)] transition-colors group-hover:border-brand/40 group-hover:text-brand">
       <Icon className="size-5" aria-hidden />
     </div>
   );

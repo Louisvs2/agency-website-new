@@ -15,9 +15,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0.625rem;
   /* Warm, paper-like neutral ramp — a whisper of amber chroma keeps the
-     greys from reading clinical (all contrast pairs verified WCAG AA). */
+     greys from reading clinical (all contrast pairs verified WCAG AA). The
+     ramp is shared by every look; only the accent + feel change per look. */
   --background: oklch(0.995 0.004 85);
   --foreground: oklch(0.16 0.006 60);
   --card: oklch(1 0 0);
@@ -36,13 +36,26 @@
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.91 0.006 80);
   --input: oklch(0.91 0.006 80);
-  --ring: oklch(0.66 0.13 75);
-  /* The single brand accent — warm gold. `brand` is the vivid decorative
-     tone (rings, dots, glows); `brand-strong` is the AA-safe text tone. This
-     is the client rebrand surface: change these three, rebrand the site. */
+  --ring: var(--brand);
+
+  /* ===== Look: GLASS (default) ===== */
+  /* Fonts (mapped onto the loaded next/font families). */
+  --font-display-active: var(--font-space-grotesk);
+  --font-sans-active: var(--font-inter);
+  /* Corner radius (drives every rounded utility). */
+  --radius: 0.625rem;
+  /* Accent — warm gold. `brand` is the vivid decorative tone (rings, dots,
+     glows), `brand-strong` the AA-safe text tone, `brand-foreground` sits on
+     top of a brand fill. Rebrand = change these three per look. */
   --brand: oklch(0.66 0.13 75);
   --brand-strong: oklch(0.52 0.11 68);
-  --brand-foreground: oklch(0.99 0.01 90);
+  --brand-foreground: oklch(0.2 0.02 70);
+  /* Feel knobs — consumed by the card / button / eyebrow components. */
+  --surface: color-mix(in oklch, var(--card) 62%, transparent);
+  --glass-blur: 24px;
+  --spotlight-strength: 1;
+  --hover-lift: -0.375rem;
+  --magnet-strength: 0.3;
 }
 
 .dark {
@@ -64,18 +77,78 @@
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.8 0.13 82);
-  /* Brighter gold reads better on the dark ground; it clears AA for text
-     and UI on the dark background by a wide margin. */
+  /* Dark accent (GLASS) — brighter gold reads better on the dark ground and
+     clears AA on it by a wide margin. Each look overrides this below. */
   --brand: oklch(0.8 0.13 82);
   --brand-strong: oklch(0.8 0.13 82);
   --brand-foreground: oklch(0.18 0.02 70);
 }
 
+/* ===== Look: EDITORIAL — Fraunces serif, deep burgundy, flat ===== */
+:root[data-look="editorial"] {
+  --font-display-active: var(--font-fraunces);
+  --font-sans-active: var(--font-inter);
+  --radius: 0.375rem;
+  --brand: oklch(0.52 0.16 25);
+  --brand-strong: oklch(0.45 0.14 25);
+  --brand-foreground: oklch(0.99 0.01 25);
+  --surface: var(--card);
+  --glass-blur: 0px;
+  --spotlight-strength: 0;
+  --hover-lift: -0.125rem;
+  --magnet-strength: 0;
+}
+.dark[data-look="editorial"] {
+  --brand: oklch(0.72 0.13 28);
+  --brand-strong: oklch(0.72 0.13 28);
+  --brand-foreground: oklch(0.18 0.02 25);
+}
+
+/* ===== Look: MINIMAL — Inter throughout, monochrome ink, sharp ===== */
+:root[data-look="minimal"] {
+  --font-display-active: var(--font-inter);
+  --font-sans-active: var(--font-inter);
+  --radius: 0.125rem;
+  --brand: oklch(0.3 0.01 60);
+  --brand-strong: oklch(0.3 0.01 60);
+  --brand-foreground: oklch(0.98 0 0);
+  --surface: var(--card);
+  --glass-blur: 0px;
+  --spotlight-strength: 0;
+  --hover-lift: -0.125rem;
+  --magnet-strength: 0;
+}
+.dark[data-look="minimal"] {
+  --brand: oklch(0.9 0.005 80);
+  --brand-strong: oklch(0.9 0.005 80);
+  --brand-foreground: oklch(0.18 0 0);
+}
+
+/* ===== Look: BOLD — Sora, electric violet, strong glass ===== */
+:root[data-look="bold"] {
+  --font-display-active: var(--font-sora);
+  --font-sans-active: var(--font-inter);
+  --radius: 0.9rem;
+  --brand: oklch(0.58 0.24 292);
+  --brand-strong: oklch(0.48 0.22 292);
+  --brand-foreground: oklch(0.98 0.01 292);
+  --surface: color-mix(in oklch, var(--card) 62%, transparent);
+  --glass-blur: 28px;
+  --spotlight-strength: 1;
+  --hover-lift: -0.5rem;
+  --magnet-strength: 0.4;
+}
+.dark[data-look="bold"] {
+  --brand: oklch(0.72 0.18 292);
+  --brand-strong: oklch(0.72 0.18 292);
+  --brand-foreground: oklch(0.18 0.02 292);
+}
+
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* The active look chooses which loaded family these resolve to. */
+  --font-sans: var(--font-sans-active), ui-sans-serif, system-ui, sans-serif;
   --font-display:
-    var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+    var(--font-display-active), ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand: var(--brand);

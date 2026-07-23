@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
+import { activeLook } from "@/config/theme";
 import { siteConfig } from "@/config/site";
-import { fontDisplay, fontSans } from "@/lib/fonts";
+import { fontVariables } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${fontSans.variable} ${fontDisplay.variable}`}>
+    <html lang="de" data-look={activeLook} className={fontVariables}>
       <body>{children}</body>
     </html>
   );
