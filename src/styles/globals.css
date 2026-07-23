@@ -16,54 +16,70 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Warm, paper-like neutral ramp — a whisper of amber chroma keeps the
+     greys from reading clinical (all contrast pairs verified WCAG AA). */
+  --background: oklch(0.995 0.004 85);
+  --foreground: oklch(0.16 0.006 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.16 0.006 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.16 0.006 60);
+  --primary: oklch(0.2 0.006 60);
+  --primary-foreground: oklch(0.985 0.003 85);
+  --secondary: oklch(0.965 0.006 85);
+  --secondary-foreground: oklch(0.2 0.006 60);
+  --muted: oklch(0.965 0.006 85);
+  --muted-foreground: oklch(0.52 0.012 65);
+  --accent: oklch(0.96 0.008 80);
+  --accent-foreground: oklch(0.2 0.006 60);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.91 0.006 80);
+  --input: oklch(0.91 0.006 80);
+  --ring: oklch(0.66 0.13 75);
+  /* The single brand accent — warm gold. `brand` is the vivid decorative
+     tone (rings, dots, glows); `brand-strong` is the AA-safe text tone. This
+     is the client rebrand surface: change these three, rebrand the site. */
+  --brand: oklch(0.66 0.13 75);
+  --brand-strong: oklch(0.52 0.11 68);
+  --brand-foreground: oklch(0.99 0.01 90);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.145 0.004 80);
+  --foreground: oklch(0.985 0.002 85);
+  --card: oklch(0.205 0.004 80);
+  --card-foreground: oklch(0.985 0.002 85);
+  --popover: oklch(0.205 0.004 80);
+  --popover-foreground: oklch(0.985 0.002 85);
+  --primary: oklch(0.922 0.004 85);
+  --primary-foreground: oklch(0.205 0.006 60);
+  --secondary: oklch(0.269 0.005 80);
+  --secondary-foreground: oklch(0.985 0.002 85);
+  --muted: oklch(0.269 0.005 80);
+  --muted-foreground: oklch(0.708 0.01 80);
+  --accent: oklch(0.269 0.006 80);
+  --accent-foreground: oklch(0.985 0.002 85);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.8 0.13 82);
+  /* Brighter gold reads better on the dark ground; it clears AA for text
+     and UI on the dark background by a wide margin. */
+  --brand: oklch(0.8 0.13 82);
+  --brand-strong: oklch(0.8 0.13 82);
+  --brand-foreground: oklch(0.18 0.02 70);
 }
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-foreground: var(--brand-foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -111,14 +127,18 @@
   h4,
   h5,
   h6 {
-    @apply font-display leading-tight font-semibold tracking-tight text-balance;
+    /* Serif display wants a gentler track than a grotesque — tight enough to
+       feel deliberate, open enough to keep the high-contrast letterforms
+       breathing. Optical sizing adds character at large sizes. */
+    @apply font-display leading-tight font-semibold tracking-[-0.015em] text-balance;
+    font-optical-sizing: auto;
   }
   /* Even wrapping and comfortable measure for body copy by default. */
   p {
     @apply text-pretty;
   }
   ::selection {
-    @apply bg-primary text-primary-foreground;
+    @apply bg-brand text-brand-foreground;
   }
 }
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/lib/fonts";
+import { fontDisplay, fontSans } from "@/lib/fonts";
 
 import "@/styles/globals.css";
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={fontSans.variable}>
+    <html lang="de" className={`${fontSans.variable} ${fontDisplay.variable}`}>
       <body>{children}</body>
     </html>
   );

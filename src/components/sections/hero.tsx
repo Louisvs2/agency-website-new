@@ -47,7 +47,7 @@ export function HeroEyebrow({
         aria-hidden
         className={cn(
           "size-1.5 rounded-full",
-          tone === "light" ? "bg-white" : "bg-primary",
+          tone === "light" ? "bg-white" : "bg-brand",
         )}
       />
       {children}
@@ -104,7 +104,9 @@ export function HeroButtons({
   );
 }
 
-/** Centered hero: the promise front and centre, nothing else competing. */
+/** Centered hero: the promise front and centre, nothing else competing. A
+ *  warm gold aura sits behind the type — a single, static, performant flourish
+ *  that lifts the stage from "text on a page" to "designed". */
 export function HeroCentered({
   eyebrow,
   title,
@@ -113,16 +115,31 @@ export function HeroCentered({
   className,
 }: HeroBaseProps) {
   return (
-    <Section className={cn("py-28 sm:py-36 lg:py-44", className)}>
+    <Section
+      className={cn(
+        "relative isolate overflow-hidden py-28 sm:py-36 lg:py-44",
+        className,
+      )}
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div
+          className="absolute -top-[14%] left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full opacity-[0.14] blur-3xl sm:h-[46rem] sm:w-[46rem]"
+          style={{
+            background:
+              "radial-gradient(closest-side, var(--brand), transparent)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+      </div>
       <Container>
-        <FadeInStagger className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center sm:gap-7">
+        <FadeInStagger className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center sm:gap-8">
           {eyebrow && (
             <FadeIn>
               <HeroEyebrow>{eyebrow}</HeroEyebrow>
             </FadeIn>
           )}
           <FadeIn>
-            <h1 className="text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+            <h1 className="text-5xl leading-[1.02] tracking-[-0.02em] text-balance sm:text-6xl lg:text-7xl">
               {title}
             </h1>
           </FadeIn>
