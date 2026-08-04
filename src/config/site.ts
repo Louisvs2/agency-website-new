@@ -31,7 +31,7 @@ export const siteConfig: SiteConfig = {
   name: "CultTwenty",
   description:
     "Wir bauen hochwertige Websites für Unternehmen — fertig, schnell live und rundum betreut. Sie sehen Ihre Website kostenlos, bevor Sie entscheiden.",
-  url: "https://culttwenty.de/agency",
+  url: "https://agency.culttwenty.de",
   contact: {
     email: "Redaktion@culttwenty.de",
     phone: "+49 151 5250 2831",
