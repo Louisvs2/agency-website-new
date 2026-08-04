@@ -1,5 +1,6 @@
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { WhatsAppButton } from "@/components/sections/whatsapp-button";
 
 export default function MarketingLayout({
   children,
@@ -11,6 +12,7 @@ export default function MarketingLayout({
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
+      <WhatsAppButton variant="floating" />
     </div>
   );
 }

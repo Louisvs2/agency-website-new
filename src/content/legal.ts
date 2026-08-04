@@ -1,7 +1,6 @@
-// Legal page skeletons. Every [Platzhalter] must be replaced with real
-// data from the CLIENT.md briefing (§24) before launch, and the final
-// texts must be reviewed by the client's legal counsel — the agency
-// provides structure, not legal advice.
+// Legal pages for CultTwenty GbR. Company data is real; the marked
+// [Hinweise] should still be reviewed by legal counsel before launch — we
+// provide the structure, not legal advice.
 
 export interface LegalSection {
   title: string;
@@ -19,32 +18,33 @@ export const impressum: LegalPageContent = {
     {
       title: "Angaben gemäß § 5 DDG",
       paragraphs: [
-        "[Vollständiger Firmenname und Rechtsform]",
-        "[Straße und Hausnummer], [PLZ und Ort]",
-        "Vertreten durch: [Name der vertretungsberechtigten Person]",
+        "CultTwenty GbR",
+        "Grundweg 16, 34479 Breuna",
+        "Vertreten durch die Gesellschafter: Louis Reinecke und Noel David Ritter",
       ],
     },
     {
       title: "Kontakt",
-      paragraphs: ["Telefon: [Telefonnummer]", "E-Mail: [E-Mail-Adresse]"],
+      paragraphs: [
+        "Telefon: 0151 5250 2831",
+        "E-Mail: Redaktion@culttwenty.de",
+      ],
     },
     {
-      title: "Registereintrag",
-      paragraphs: [
-        "Eintragung im Handelsregister: [Registergericht], [Registernummer] — falls nicht zutreffend, Abschnitt entfernen.",
-      ],
+      title: "Verantwortlich für den Inhalt",
+      paragraphs: ["Louis Reinecke und Noel David Ritter, Anschrift wie oben."],
     },
     {
       title: "Umsatzsteuer-ID",
       paragraphs: [
-        "Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [USt-IdNr.] — falls nicht vorhanden, Abschnitt entfernen.",
+        "Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [USt-IdNr. — falls vorhanden; sonst diesen Abschnitt entfernen].",
       ],
     },
     {
       title: "EU-Streitschlichtung",
       paragraphs: [
         "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Unsere E-Mail-Adresse finden Sie oben im Impressum.",
-        "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. [Von Rechtsberatung prüfen lassen.]",
+        "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
       ],
     },
   ],
@@ -56,19 +56,20 @@ export const datenschutz: LegalPageContent = {
     {
       title: "Verantwortlicher",
       paragraphs: [
-        "Verantwortlich für die Datenverarbeitung auf dieser Website: [Firmenname], [Anschrift], [E-Mail-Adresse].",
+        "Verantwortlich für die Datenverarbeitung auf dieser Website: CultTwenty GbR, Grundweg 16, 34479 Breuna, E-Mail: Redaktion@culttwenty.de.",
       ],
     },
     {
       title: "Hosting",
       paragraphs: [
-        "Diese Website wird bei Vercel Inc. gehostet. Beim Aufruf der Seiten verarbeitet Vercel technisch notwendige Daten (z. B. IP-Adresse) zur Auslieferung der Inhalte. [Details und Rechtsgrundlage von Rechtsberatung ergänzen lassen.]",
+        "Diese Website wird bei der STRATO AG, Otto-Ostrowski-Straße 7, 10249 Berlin, gehostet. Beim Aufruf der Seiten verarbeitet der Hoster technisch notwendige Daten (z. B. IP-Adresse) zur Auslieferung der Inhalte. [Anschrift des Hosters anhand Ihres Strato-Vertrags bestätigen und einen Auftragsverarbeitungsvertrag (AVV) abschließen; Rechtsgrundlage rechtlich prüfen lassen.]",
       ],
     },
     {
-      title: "Kontaktformular",
+      title: "Kontaktaufnahme",
       paragraphs: [
-        "Wenn Sie uns über das Kontaktformular kontaktieren, verarbeiten wir die von Ihnen angegebenen Daten (Name, E-Mail-Adresse, Nachricht) zur Bearbeitung Ihrer Anfrage. Der Versand erfolgt über den Dienstleister Resend. [Rechtsgrundlage, Speicherdauer und ggf. AV-Vertrag von Rechtsberatung ergänzen lassen.]",
+        "Wenn Sie uns per E-Mail, Telefon oder WhatsApp kontaktieren, verarbeiten wir die von Ihnen übermittelten Angaben (z. B. Name, Kontaktdaten, Inhalt der Anfrage) ausschließlich zur Bearbeitung Ihres Anliegens.",
+        "Für die Kontaktaufnahme per WhatsApp gelten zusätzlich die Datenschutzbestimmungen von WhatsApp (Meta Platforms Ireland Ltd.). [Rechtsgrundlage und Speicherdauer rechtlich prüfen lassen.]",
       ],
     },
     {
@@ -80,7 +81,7 @@ export const datenschutz: LegalPageContent = {
     {
       title: "Hinweis",
       paragraphs: [
-        "[Diese Datenschutzerklärung ist ein Platzhalter-Gerüst. Vor dem Launch vollständig ausarbeiten und rechtlich prüfen lassen — insbesondere wenn Analytics, Karten-Einbettungen oder weitere Drittdienste hinzukommen.]",
+        "[Diese Datenschutzerklärung ist ein Grundgerüst. Vor dem Launch vollständig ausarbeiten und rechtlich prüfen lassen — insbesondere, wenn Analytics, Karten-Einbettungen oder weitere Drittdienste hinzukommen.]",
       ],
     },
   ],

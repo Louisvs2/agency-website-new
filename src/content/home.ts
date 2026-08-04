@@ -1,12 +1,10 @@
-// Placeholder content for the default homepage. Replaced per client from
-// the CLIENT.md briefing — no line of this file may survive a client launch.
-// Structure and tone demonstrate the intended quality bar (DESIGN.md §14).
+// Homepage content for CultTwenty. Honest copy for a young agency — no
+// invented numbers, testimonials or client logos.
 
+import type { ContactPerson } from "@/components/sections/contact-person";
 import type { Service } from "@/components/sections/features";
 import type { FaqItem } from "@/components/sections/faq";
 import type { ProcessStep } from "@/components/sections/process";
-import type { Stat } from "@/components/sections/stats";
-import type { Testimonial } from "@/components/shared/testimonial-card";
 import { services } from "@/content/services";
 import type { Action, SectionIntro } from "@/types/content";
 
@@ -18,30 +16,29 @@ interface HomeContent {
     actions: { primary: Action; secondary: Action };
   };
   services: { intro: SectionIntro; items: Service[] };
-  stats: Stat[];
   process: { intro: SectionIntro; steps: ProcessStep[] };
-  testimonials: { intro: SectionIntro; items: Testimonial[] };
+  person: { intro: SectionIntro; data: ContactPerson };
   faq: { intro: SectionIntro; items: FaqItem[] };
   cta: { title: string; subtitle: string; action: Action; note: string };
 }
 
 export const home: HomeContent = {
   hero: {
-    eyebrow: "Platzhalter-Eyebrow",
-    title: "Ein klares Versprechen in einem Satz",
+    eyebrow: "Websites für Unternehmen",
+    title: "Ihre neue Website — fertig, bevor Sie sich entscheiden.",
     subtitle:
-      "Ein unterstützender Satz, der das Versprechen konkretisiert: für wen, mit welchem Ergebnis und warum dieses Unternehmen die richtige Wahl ist.",
+      "Wir gestalten und betreiben hochwertige Websites für Unternehmen. Sie sehen Ihre Seite kostenlos und entscheiden erst dann. Um Technik, Hosting und Pflege kümmern wir uns.",
     actions: {
-      primary: { label: "Projekt anfragen", href: "/kontakt" },
+      primary: { label: "Kostenlos ansehen", href: "/kontakt" },
       secondary: { label: "Leistungen ansehen", href: "/leistungen" },
     },
   },
   services: {
     intro: {
       eyebrow: "Leistungen",
-      title: "Was wir für Sie tun",
+      title: "Was Sie bekommen",
       subtitle:
-        "Drei bis vier Kernleistungen, jeweils als Ergebnis für den Kunden formuliert — nicht als Fähigkeit des Unternehmens.",
+        "Alles, was eine Website heute braucht — in einem Rundum-sorglos-Paket, ohne dass Sie sich um Technik kümmern müssen.",
     },
     items: services.map((service) => ({
       icon: service.icon,
@@ -50,103 +47,83 @@ export const home: HomeContent = {
       href: `/leistungen/${service.slug}`,
     })),
   },
-  stats: [
-    { value: 120, suffix: "+", label: "Abgeschlossene Projekte" },
-    { value: 15, label: "Jahre Erfahrung" },
-    { value: 98, suffix: " %", label: "Weiterempfehlungsrate" },
-    { value: 24, suffix: " h", label: "Antwortzeit, garantiert" },
-  ],
   process: {
     intro: {
-      eyebrow: "So arbeiten wir",
-      title: "In drei Schritten zum Ergebnis",
+      eyebrow: "So einfach geht's",
+      title: "In wenigen Schritten online",
       subtitle:
-        "Ein transparenter Ablauf nimmt die Unsicherheit aus der Entscheidung.",
+        "Ein klarer Ablauf, bei dem Sie zu keinem Zeitpunkt ein Risiko eingehen.",
     },
     steps: [
       {
-        title: "Kennenlernen",
+        title: "Kostenlos ansehen",
         description:
-          "Ein unverbindliches Erstgespräch: Ausgangslage, Ziele und ob wir zusammenpassen. Danach wissen beide Seiten, woran sie sind.",
+          "Wir bauen Ihre Website und zeigen sie Ihnen unverbindlich. Sie sehen ein echtes Ergebnis, kein Angebot auf Papier.",
       },
       {
-        title: "Konzept & Angebot",
+        title: "Anpassen",
         description:
-          "Ein konkreter Vorschlag mit klarem Umfang, Zeitplan und Festpreis — keine Überraschungen, keine versteckten Kosten.",
+          "Ihre Inhalte, Fotos und Wünsche fließen ein, bis der Auftritt zu Ihrem Unternehmen passt.",
       },
       {
-        title: "Umsetzung & Übergabe",
+        title: "Live gehen",
         description:
-          "Umsetzung mit regelmäßigen Zwischenständen und einer sauberen Übergabe inklusive allem, was Sie für den Betrieb brauchen.",
+          "Wir veröffentlichen Ihre Website und betreuen sie dauerhaft — inklusive Hosting, Updates und Pflege.",
       },
     ],
   },
-  testimonials: {
+  person: {
     intro: {
-      eyebrow: "Referenzen",
-      title: "Was Kundinnen und Kunden sagen",
+      eyebrow: "Ihr Ansprechpartner",
+      title: "Persönlich für Sie da",
     },
-    items: [
-      {
-        quote:
-          "Ein konkretes Zitat mit einem messbaren Ergebnis wirkt stärker als jedes Eigenlob. Dieser Platzhalter zeigt die ideale Länge.",
-        name: "Vorname Nachname",
-        role: "Position, Unternehmen",
-      },
-      {
-        quote:
-          "Zwei bis drei Sätze, die ein echtes Projekt beschreiben: Ausgangslage, Zusammenarbeit und was sich danach verbessert hat.",
-        name: "Vorname Nachname",
-        role: "Position, Unternehmen",
-      },
-      {
-        quote:
-          "Nur echte Stimmen mit echtem Namen und Einverständnis verwenden — anonyme Zitate schaden mehr, als sie nützen.",
-        name: "Vorname Nachname",
-        role: "Position, Unternehmen",
-      },
-    ],
+    data: {
+      name: "Louis Reinecke",
+      role: "Ihr Ansprechpartner",
+      initials: "LR",
+      note: "Ich begleite Sie von der ersten Frage bis zur fertigen Website — direkt erreichbar, ohne Umwege und ohne Fachchinesisch.",
+    },
   },
   faq: {
     intro: {
       eyebrow: "FAQ",
       title: "Häufige Fragen",
       subtitle:
-        "Die echten Fragen aus Anfragen und Gesprächen — inklusive der unbequemen zu Preis und Dauer.",
+        "Die Fragen, die im Erstgespräch am häufigsten kommen — offen beantwortet.",
     },
     items: [
       {
-        question: "Was kostet ein Projekt?",
+        question: "Was kostet eine Website?",
         answer:
-          "Eine ehrliche Antwort mit Preisrahmen oder Einstiegspreis. Die Preisfrage offen zu beantworten schafft Vertrauen und filtert unpassende Anfragen.",
+          "Das hängt vom Umfang ab. Sie sehen Ihre Website zuerst kostenlos — über den Preis sprechen wir erst, wenn sie Ihnen wirklich gefällt.",
       },
       {
-        question: "Wie lange dauert die Umsetzung?",
+        question: "Wie lange dauert es, bis meine Website online ist?",
         answer:
-          "Ein realistischer Zeitrahmen mit den wichtigsten Einflussfaktoren, damit Interessenten planen können.",
+          "Weil die technische Basis bereits steht, geht es schnell: von Ihren Inhalten bis zum Launch sind es meist nur wenige Tage.",
       },
       {
-        question: "Wie läuft die Zusammenarbeit ab?",
+        question: "Muss ich mich um Technik kümmern?",
         answer:
-          "Kurzfassung des Prozesses mit Verweis auf die Prozess-Sektion: Erstgespräch, Angebot, Umsetzung, Übergabe.",
+          "Nein. Hosting, Updates, Sicherheit und Pflege übernehmen wir vollständig. Sie haben mit dem Technischen nichts zu tun.",
       },
       {
-        question: "Was passiert nach der Anfrage?",
+        question: "Kann ich meine bestehende Website ablösen?",
         answer:
-          "Konkret beschreiben, was der nächste Schritt ist und wie schnell eine Antwort kommt — das senkt die Hürde vor dem Absenden.",
+          "Ja. Wir zeigen Ihnen kostenlos, wie viel hochwertiger und schneller Ihr Auftritt aussehen kann — Sie vergleichen in Ruhe.",
       },
       {
-        question: "Eine unbequeme, aber ehrliche Frage?",
+        question: "Wie nehme ich am schnellsten Kontakt auf?",
         answer:
-          "Auch Einwände offen beantworten. Wer die kritischen Fragen selbst stellt und beantwortet, wirkt souverän.",
+          "Am einfachsten per WhatsApp. Sie erreichen uns aber genauso per E-Mail und Telefon.",
       },
     ],
   },
   cta: {
-    title: "Bereit für den nächsten Schritt?",
+    title: "Sehen Sie Ihre Website — kostenlos.",
     subtitle:
-      "Ein letzter, ruhiger Aufruf ohne Druck: das Angebot in einem Satz und die Einladung, ins Gespräch zu kommen.",
-    action: { label: "Kostenloses Erstgespräch vereinbaren", href: "/kontakt" },
-    note: "Unverbindlich. Antwort innerhalb von 24 Stunden.",
+      "Schreiben Sie uns kurz, worum es geht. Sie bekommen einen unverbindlichen Eindruck, bevor Sie sich entscheiden.",
+    action: { label: "Jetzt Kontakt aufnehmen", href: "/kontakt" },
+    note: "Unverbindlich · Antwort meist am selben Tag.",
   },
 };

@@ -7,6 +7,7 @@ import { fontVariables } from "@/lib/fonts";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,
     template: `%s – ${siteConfig.name}`,

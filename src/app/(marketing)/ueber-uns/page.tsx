@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ContactPersonSection } from "@/components/sections/contact-person";
 import { CTA } from "@/components/sections/cta";
 import { FeatureSplit } from "@/components/sections/features";
 import { HeroStatement } from "@/components/sections/hero";
@@ -18,6 +19,10 @@ export default function UeberUnsPage() {
         intro={about.values.intro}
         items={about.values.items}
         background="muted"
+      />
+      <ContactPersonSection
+        intro={about.person.intro}
+        person={about.person.data}
       />
       <CTA {...about.cta} />
     </>

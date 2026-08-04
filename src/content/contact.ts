@@ -8,6 +8,6 @@ export const contact: { intro: SectionIntro } = {
     eyebrow: "Kontakt",
     title: "Sprechen wir über Ihr Vorhaben",
     subtitle:
-      "Schreiben Sie uns, was Sie planen — Sie erhalten innerhalb von 24 Stunden eine Antwort. Unverbindlich und kostenlos.",
+      "Schreiben Sie uns, was Sie planen — am schnellsten per WhatsApp. Sie sehen Ihre Website kostenlos, bevor Sie entscheiden. Antwort meist am selben Tag.",
   },
 };

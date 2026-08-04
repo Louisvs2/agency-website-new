@@ -1,9 +1,8 @@
-// Placeholder services for the template. Replaced per client from the
-// CLIENT.md briefing (§4) — slugs, titles, and copy are all placeholders.
-// This file is the single source for service slugs: the homepage cards,
-// the overview page, and the detail routes all derive from it.
+// CultTwenty services — what customers get, framed as their outcome. This
+// file is the single source for service slugs: the homepage cards, the
+// overview page, and the detail routes all derive from it.
 
-import { Compass, PenTool, Rocket, type LucideIcon } from "lucide-react";
+import { LifeBuoy, PenTool, Rocket, type LucideIcon } from "lucide-react";
 
 import type { Feature } from "@/components/sections/features";
 import type { FaqItem } from "@/components/sections/faq";
@@ -21,106 +20,141 @@ export interface ServiceDetail {
   faq?: FaqItem[];
 }
 
-const sharedFeatures: Feature[] = [
-  {
-    title: "Bestandteil Eins",
-    description:
-      "Ein konkreter Bestandteil dieser Leistung, als Ergebnis für den Kunden formuliert.",
-  },
-  {
-    title: "Bestandteil Zwei",
-    description:
-      "Ein konkreter Bestandteil dieser Leistung, als Ergebnis für den Kunden formuliert.",
-  },
-  {
-    title: "Bestandteil Drei",
-    description:
-      "Ein konkreter Bestandteil dieser Leistung, als Ergebnis für den Kunden formuliert.",
-  },
-  {
-    title: "Bestandteil Vier",
-    description:
-      "Ein konkreter Bestandteil dieser Leistung, als Ergebnis für den Kunden formuliert.",
-  },
-];
+const enthaltenIntro: SectionIntro = {
+  eyebrow: "Leistungsumfang",
+  title: "Was enthalten ist",
+};
 
 export const services: ServiceDetail[] = [
   {
-    slug: "leistung-eins",
-    icon: Compass,
-    title: "Leistung Eins",
+    slug: "webdesign",
+    icon: PenTool,
+    title: "Website-Design",
     excerpt:
-      "Zwei Sätze zum Ergebnis dieser Leistung: Was hat der Kunde am Ende in der Hand, und welches Problem ist damit gelöst?",
+      "Ein hochwertiges, individuelles Design, das Ihr Unternehmen professionell und unverwechselbar wirken lässt.",
     hero: {
-      title: "Leistung Eins: das Versprechen in einem Satz",
+      title: "Ein Design, das Vertrauen schafft",
       subtitle:
-        "Zwei bis drei Sätze, die die Leistung aus Sicht des Kunden beschreiben: Ausgangslage, Vorgehen und das konkrete Ergebnis.",
+        "Wir gestalten Ihren Auftritt so, dass er auf den ersten Blick hochwertig wirkt — passend zu Ihrer Marke und Ihren Kunden.",
     },
-    featuresIntro: {
-      eyebrow: "Leistungsumfang",
-      title: "Was enthalten ist",
-    },
-    features: sharedFeatures,
-    faq: [
+    featuresIntro: enthaltenIntro,
+    features: [
       {
-        question: "Eine häufige Frage zu dieser Leistung?",
-        answer:
-          "Eine ehrliche, konkrete Antwort — die echten Fragen aus Kundengesprächen konvertieren am besten.",
+        title: "Individuelles Design",
+        description:
+          "Kein Baukasten von der Stange — ein Auftritt, der zu Ihrem Unternehmen passt.",
       },
       {
-        question: "Was kostet diese Leistung?",
+        title: "Perfekt auf jedem Gerät",
+        description:
+          "Ihre Website sieht auf Handy, Tablet und Desktop makellos aus.",
+      },
+      {
+        title: "Ihre Marke im Mittelpunkt",
+        description:
+          "Farben, Schrift und Bildsprache spielen Ihre Marke hochwertig aus.",
+      },
+      {
+        title: "Klar und übersichtlich",
+        description:
+          "Besucher finden sofort, was sie suchen — und werden zu Kunden.",
+      },
+    ],
+    faq: [
+      {
+        question: "Kann ich mein Logo und meine Farben verwenden?",
         answer:
-          "Ein Preisrahmen oder Einstiegspreis. Offenheit bei der Preisfrage schafft Vertrauen und filtert unpassende Anfragen.",
+          "Selbstverständlich. Wir richten das Design an Ihrer bestehenden Marke aus — oder helfen, sie aufzufrischen.",
+      },
+      {
+        question: "Sehe ich das Design vorab?",
+        answer:
+          "Ja. Sie sehen Ihre Website kostenlos, bevor Sie sich entscheiden.",
       },
     ],
   },
   {
-    slug: "leistung-zwei",
-    icon: PenTool,
-    title: "Leistung Zwei",
+    slug: "umsetzung-launch",
+    icon: Rocket,
+    title: "Umsetzung & Launch",
     excerpt:
-      "Zwei Sätze zum Ergebnis dieser Leistung: Was hat der Kunde am Ende in der Hand, und welches Problem ist damit gelöst?",
+      "Wir bauen Ihre Website technisch sauber und bringen sie schnell und zuverlässig online.",
     hero: {
-      title: "Leistung Zwei: das Versprechen in einem Satz",
+      title: "Schnell und sauber online",
       subtitle:
-        "Zwei bis drei Sätze, die die Leistung aus Sicht des Kunden beschreiben: Ausgangslage, Vorgehen und das konkrete Ergebnis.",
+        "Von den Inhalten bis zum Launch übernehmen wir alles — technisch einwandfrei, schnell und für Google optimiert.",
     },
-    featuresIntro: {
-      eyebrow: "Leistungsumfang",
-      title: "Was enthalten ist",
-    },
-    features: sharedFeatures,
+    featuresIntro: enthaltenIntro,
+    features: [
+      {
+        title: "Schnell live",
+        description:
+          "Weil die Basis steht, ist Ihre Website oft in wenigen Tagen online.",
+      },
+      {
+        title: "Bei Google gefunden",
+        description:
+          "Sauber für Suchmaschinen gebaut — die Grundlage für mehr Sichtbarkeit.",
+      },
+      {
+        title: "Blitzschnelle Ladezeiten",
+        description:
+          "Schnelle Seiten halten Besucher und wirken professionell.",
+      },
+      {
+        title: "Rechtssicher aufgesetzt",
+        description:
+          "Impressum, Datenschutz und Cookie-Hinweis sind von Anfang an dabei.",
+      },
+    ],
   },
   {
-    slug: "leistung-drei",
-    icon: Rocket,
-    title: "Leistung Drei",
+    slug: "hosting-support",
+    icon: LifeBuoy,
+    title: "Hosting, Pflege & Support",
     excerpt:
-      "Zwei Sätze zum Ergebnis dieser Leistung: Was hat der Kunde am Ende in der Hand, und welches Problem ist damit gelöst?",
+      "Wir betreiben Ihre Website dauerhaft — um Technik, Updates und Sicherheit müssen Sie sich nie kümmern.",
     hero: {
-      title: "Leistung Drei: das Versprechen in einem Satz",
+      title: "Sie müssen sich um nichts kümmern",
       subtitle:
-        "Zwei bis drei Sätze, die die Leistung aus Sicht des Kunden beschreiben: Ausgangslage, Vorgehen und das konkrete Ergebnis.",
+        "Ihre Website läuft, ist sicher und bleibt aktuell — dafür sorgen wir, damit Sie sich auf Ihr Geschäft konzentrieren können.",
     },
-    featuresIntro: {
-      eyebrow: "Leistungsumfang",
-      title: "Was enthalten ist",
-    },
-    features: sharedFeatures,
+    featuresIntro: enthaltenIntro,
+    features: [
+      {
+        title: "Zuverlässiges Hosting",
+        description: "Ihre Website ist schnell erreichbar und stabil online.",
+      },
+      {
+        title: "Updates & Sicherheit",
+        description:
+          "Wir halten alles aktuell und geschützt — ganz ohne Ihr Zutun.",
+      },
+      {
+        title: "Änderungen jederzeit",
+        description:
+          "Neue Inhalte oder Anpassungen? Ein kurzer Hinweis genügt.",
+      },
+      {
+        title: "Persönlicher Ansprechpartner",
+        description:
+          "Ein fester Kontakt, der Sie kennt und schnell erreichbar ist.",
+      },
+    ],
   },
 ];
 
 export const servicesPage = {
   hero: {
-    title: "Leistungen im Überblick",
+    title: "Unsere Leistungen",
     subtitle:
-      "Ein einleitender Satz, der das Leistungsspektrum zusammenfasst und die Auswahl erleichtert.",
+      "Von Design über Umsetzung bis Betrieb — alles aus einer Hand, damit Sie sich um nichts kümmern müssen.",
   },
   cta: {
     title: "Nicht sicher, was Sie brauchen?",
     subtitle:
-      "Im kostenlosen Erstgespräch klären wir gemeinsam, welcher Weg zu Ihrem Vorhaben passt.",
-    action: { label: "Erstgespräch vereinbaren", href: "/kontakt" },
-    note: "Unverbindlich. Antwort innerhalb von 24 Stunden.",
+      "Schreiben Sie uns kurz — wir zeigen Ihnen kostenlos, was für Ihr Unternehmen möglich ist.",
+    action: { label: "Kostenlos ansehen", href: "/kontakt" },
+    note: "Unverbindlich · Antwort meist am selben Tag.",
   },
 };

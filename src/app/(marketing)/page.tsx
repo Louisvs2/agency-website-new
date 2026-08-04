@@ -1,14 +1,13 @@
+import { ContactPersonSection } from "@/components/sections/contact-person";
 import { CTA } from "@/components/sections/cta";
 import { FAQ } from "@/components/sections/faq";
 import { ServiceCards } from "@/components/sections/features";
 import { HeroCentered } from "@/components/sections/hero";
 import { ProcessSteps } from "@/components/sections/process";
-import { Stats } from "@/components/sections/stats";
-import { TestimonialsGrid } from "@/components/sections/testimonials";
 import { home } from "@/content/home";
 
-// Default homepage composition following the canonical arc (DESIGN.md §14):
-// promise → offer → proof → process → deep proof → objections → action.
+// CultTwenty homepage: promise → offer → how it works → who you'll talk to →
+// objections → action. No invented proof (stats/testimonials) for a young firm.
 export default function HomePage() {
   return (
     <>
@@ -18,17 +17,13 @@ export default function HomePage() {
         items={home.services.items}
         background="muted"
       />
-      <Stats items={home.stats} />
-      <ProcessSteps
-        intro={home.process.intro}
-        steps={home.process.steps}
+      <ProcessSteps intro={home.process.intro} steps={home.process.steps} />
+      <ContactPersonSection
+        intro={home.person.intro}
+        person={home.person.data}
         background="muted"
       />
-      <TestimonialsGrid
-        intro={home.testimonials.intro}
-        items={home.testimonials.items}
-      />
-      <FAQ intro={home.faq.intro} items={home.faq.items} background="muted" />
+      <FAQ intro={home.faq.intro} items={home.faq.items} />
       <CTA {...home.cta} />
     </>
   );

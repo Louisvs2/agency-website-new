@@ -12,11 +12,15 @@ export interface SiteConfig {
   name: string;
   /** One-sentence description — used in metadata and the footer brand block. */
   description: string;
+  /** Canonical base URL (the site lives in the /agency subdirectory). */
+  url: string;
   /** Public contact channels — shown on the contact page. */
   contact: {
     email: string;
     phone?: string;
-    /** Address lines, rendered as-is. */
+    /** WhatsApp number in international format without "+" (for wa.me links). */
+    whatsapp?: string;
+    /** Address lines, rendered as-is. Kept out of the contact page on request. */
     address?: string[];
   };
   /** Active social profiles only (dead profiles hurt trust, DESIGN.md §13). */
@@ -24,12 +28,14 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  name: "Website Template",
-  description: "Agency starter template for marketing websites.",
+  name: "CultTwenty",
+  description:
+    "Wir bauen hochwertige Websites für Unternehmen — fertig, schnell live und rundum betreut. Sie sehen Ihre Website kostenlos, bevor Sie entscheiden.",
+  url: "https://culttwenty.de/agency",
   contact: {
-    email: "kontakt@example.de",
-    phone: "+49 89 1234560",
-    address: ["Musterstraße 1", "80331 München"],
+    email: "Redaktion@culttwenty.de",
+    phone: "+49 151 5250 2831",
+    whatsapp: "4915152502831",
   },
   socials: [],
 };
