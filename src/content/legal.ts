@@ -35,12 +35,6 @@ export const impressum: LegalPageContent = {
       paragraphs: ["Louis Reinecke und Noel David Ritter, Anschrift wie oben."],
     },
     {
-      title: "Umsatzsteuer-ID",
-      paragraphs: [
-        "Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [USt-IdNr. — falls vorhanden; sonst diesen Abschnitt entfernen].",
-      ],
-    },
-    {
       title: "EU-Streitschlichtung",
       paragraphs: [
         "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Unsere E-Mail-Adresse finden Sie oben im Impressum.",
