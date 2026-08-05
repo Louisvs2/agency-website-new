@@ -43,10 +43,7 @@ export function MobileNav({ items, cta, className }: MobileNavProps) {
           <span className="sr-only">Menü öffnen</span>
         </Button>
       </SheetTrigger>
-      <SheetContent
-        side="right"
-        className="border-border/60 bg-background/90 backdrop-blur-xl"
-      >
+      <SheetContent side="right" className="border-border/60 bg-background/95">
         <SheetHeader>
           <SheetTitle>Menü</SheetTitle>
           <SheetDescription className="sr-only">

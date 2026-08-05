@@ -4,13 +4,14 @@ import { useEffect, useRef } from "react";
 
 /**
  * A soft brand-tinted glow that trails the cursor across the whole page — the
- * same reactive field the service cards catch, promoted to a site-wide layer.
- * It sits behind the content (over the aurora) so translucent sections let it
- * shine through. Pure CSS variables drive the position via one rAF-throttled
- * pointer listener, so it costs almost nothing.
+ * same reactive field the service cards catch, promoted to a site-wide layer
+ * behind the content. It is a single fixed-size, pre-rendered circle that we
+ * only ever move with `translate3d`, so it stays on the compositor and never
+ * repaints (a viewport-wide gradient repainting every frame is what makes this
+ * pattern janky — this one costs next to nothing).
  *
  * It stays invisible on touch / coarse pointers and under
- * prefers-reduced-motion, and it defers to the active look's
+ * prefers-reduced-motion, and defers to the active look's
  * `--spotlight-strength` (flat looks set it to 0 and it never shows).
  */
 export function CursorSpotlight() {
@@ -32,14 +33,14 @@ export function CursorSpotlight() {
     let y = window.innerHeight / 2;
     const apply = () => {
       raf = 0;
-      el.style.setProperty("--cx", `${x}px`);
-      el.style.setProperty("--cy", `${y}px`);
+      // Centre the 900px circle on the cursor; translate3d keeps it composited.
+      el.style.transform = `translate3d(${x - 450}px, ${y - 450}px, 0)`;
     };
     const onMove = (e: PointerEvent) => {
       x = e.clientX;
       y = e.clientY;
-      if (!raf) raf = requestAnimationFrame(apply);
       el.dataset.active = "true";
+      if (!raf) raf = requestAnimationFrame(apply);
     };
     apply();
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -54,10 +55,10 @@ export function CursorSpotlight() {
       ref={ref}
       aria-hidden
       data-active="false"
-      className="pointer-events-none fixed inset-0 -z-10 opacity-0 transition-opacity duration-700 ease-out data-[active=true]:opacity-100"
+      className="pointer-events-none fixed top-0 left-0 -z-10 size-[900px] opacity-0 transition-opacity duration-700 ease-out will-change-transform data-[active=true]:opacity-100"
       style={{
         background:
-          "radial-gradient(520px circle at var(--cx, 50%) var(--cy, 50%), color-mix(in oklch, var(--brand) 15%, transparent), transparent 62%)",
+          "radial-gradient(closest-side, color-mix(in oklch, var(--brand) 16%, transparent), transparent)",
       }}
     />
   );

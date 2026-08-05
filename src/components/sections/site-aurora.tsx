@@ -2,34 +2,32 @@
 
 import { useEffect, useRef } from "react";
 
-// Three massive, heavily-blurred colour fields drifting slowly behind all
-// content — an Apple/OpenAI-style aurora. Each blob floats on its own CSS
-// keyframe (GPU transforms only) and gets a gentle, differing scroll parallax.
-// Everything degrades to a calm static field under prefers-reduced-motion.
+// Three massive, heavily-blurred colour fields sitting behind all content —
+// an Apple/OpenAI-style aurora. They are static (a continuous keyframe drift of
+// layers this large re-composites every frame and tanks the framerate on big
+// screens); depth comes instead from a gentle, differing scroll parallax that
+// only ever costs anything while the page is actually scrolling.
 const BLOBS = [
   {
     color: "rgba(72,116,255,0.55)", // soft blue
     className:
       "left-[-12%] top-[-8%] h-[42rem] w-[42rem] sm:h-[54rem] sm:w-[54rem]",
-    blur: "blur(170px)",
-    animation: "aurora-drift-a 34s ease-in-out infinite",
-    parallax: 0.18,
+    blur: "blur(110px)",
+    parallax: 0.16,
   },
   {
     color: "rgba(150,88,255,0.5)", // violet
     className:
       "right-[-14%] top-[22%] h-[40rem] w-[40rem] sm:h-[52rem] sm:w-[52rem]",
-    blur: "blur(190px)",
-    animation: "aurora-drift-b 44s ease-in-out infinite",
-    parallax: 0.09,
+    blur: "blur(120px)",
+    parallax: 0.08,
   },
   {
     color: "rgba(38,214,208,0.42)", // cyan
     className:
       "left-[18%] bottom-[-16%] h-[38rem] w-[38rem] sm:h-[48rem] sm:w-[48rem]",
-    blur: "blur(180px)",
-    animation: "aurora-drift-c 28s ease-in-out infinite",
-    parallax: 0.26,
+    blur: "blur(110px)",
+    parallax: 0.24,
   },
 ];
 
@@ -77,11 +75,10 @@ export function SiteAurora() {
           style={{ transform: "translate3d(0, var(--sy, 0px), 0)" }}
         >
           <div
-            className={`absolute rounded-full will-change-transform ${blob.className}`}
+            className={`absolute rounded-full ${blob.className}`}
             style={{
               background: `radial-gradient(closest-side, ${blob.color}, transparent)`,
               filter: blob.blur,
-              animation: blob.animation,
             }}
           />
         </div>
@@ -91,7 +88,7 @@ export function SiteAurora() {
         className="absolute top-[-12%] left-1/2 h-[34rem] w-[62rem] -translate-x-1/2 rounded-full opacity-[0.06]"
         style={{
           background: "radial-gradient(closest-side, #ffffff, transparent)",
-          filter: "blur(150px)",
+          filter: "blur(90px)",
         }}
       />
       {/* Vignette keeps content crisp over the glow. */}

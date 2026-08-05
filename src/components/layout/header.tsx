@@ -13,7 +13,7 @@ import { siteConfig } from "@/config/site";
 // only client leaf.
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/50 bg-background/90">
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"
