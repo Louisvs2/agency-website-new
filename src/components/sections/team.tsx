@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { User } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Section, type SectionBackground } from "@/components/layout/section";
@@ -10,7 +11,8 @@ import type { SectionImage, SectionIntro } from "@/types/content";
 export interface TeamMember {
   name: string;
   role: string;
-  image: SectionImage;
+  /** Portrait — omit to show a neutral placeholder avatar instead. */
+  image?: SectionImage;
   /** A short three-line introduction shown under the name. */
   bio?: string;
   /** What this person owns — a few focused bullet points on the card. */
@@ -39,20 +41,29 @@ export function TeamGrid({
         {intro && <SectionHeading {...intro} />}
         <FadeInStagger className={cn(intro && "mt-14 sm:mt-20")}>
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            {members.map((member) => (
-              <li key={member.name} className="h-full">
+            {members.map((member, index) => (
+              <li key={`${member.name}-${index}`} className="h-full">
                 <FadeIn className="h-full">
                   <article className="group flex h-full flex-col gap-5 rounded-2xl border border-border/60 bg-[var(--surface)] p-6 backdrop-blur-[var(--glass-blur)] transition duration-300 ease-out hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_28px_80px_-28px_color-mix(in_oklch,var(--brand)_45%,transparent)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-7">
                     <div className="flex items-center gap-4">
-                      <div className="relative size-14 shrink-0 overflow-hidden rounded-full ring-1 ring-border/60">
-                        <Image
-                          src={member.image.src}
-                          alt={member.image.alt}
-                          fill
-                          sizes="56px"
-                          className="object-cover object-top"
-                        />
-                      </div>
+                      {member.image ? (
+                        <div className="relative size-14 shrink-0 overflow-hidden rounded-full ring-1 ring-border/60">
+                          <Image
+                            src={member.image.src}
+                            alt={member.image.alt}
+                            fill
+                            sizes="56px"
+                            className="object-cover object-top"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          aria-hidden
+                          className="flex size-14 shrink-0 items-center justify-center rounded-full bg-white/[0.04] ring-1 ring-border/60"
+                        >
+                          <User className="size-6 text-muted-foreground" />
+                        </div>
+                      )}
                       <div className="min-w-0">
                         <h3 className="font-display text-lg font-semibold tracking-tight">
                           {member.name}
