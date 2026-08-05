@@ -62,14 +62,13 @@ export function TeamGrid({
                     </div>
                     {member.responsibilities &&
                       member.responsibilities.length > 0 && (
-                        <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+                        <ul className="flex flex-wrap gap-1.5">
                           {member.responsibilities.map((item) => (
-                            <li key={item} className="flex items-start gap-2.5">
-                              <span
-                                aria-hidden
-                                className="mt-[0.5rem] size-1 shrink-0 rounded-full bg-brand"
-                              />
-                              <span className="leading-relaxed">{item}</span>
+                            <li
+                              key={item}
+                              className="rounded-full border border-border/50 bg-white/[0.03] px-2.5 py-1 text-xs leading-none text-muted-foreground"
+                            >
+                              {item}
                             </li>
                           ))}
                         </ul>

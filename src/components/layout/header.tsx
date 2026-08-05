@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
+import { HeaderNav } from "@/components/layout/header-nav";
 import { MobileNav } from "@/components/layout/mobile-nav";
 import { Button } from "@/components/ui/button";
 import { navigation } from "@/config/navigation";
@@ -21,20 +22,7 @@ export function Header() {
         >
           {siteConfig.name}
         </Link>
-        <nav
-          aria-label="Hauptnavigation"
-          className="hidden items-center gap-8 md:flex"
-        >
-          {navigation.main.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <HeaderNav items={navigation.main} />
         <div className="flex items-center">
           <Button asChild size="sm" className="hidden md:inline-flex">
             <Link href={navigation.cta.href}>{navigation.cta.label}</Link>

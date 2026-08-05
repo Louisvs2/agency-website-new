@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { CursorSpotlight } from "@/components/motion/cursor-spotlight";
 import { SiteAurora } from "@/components/sections/site-aurora";
 import { activeLook } from "@/config/theme";
 import { siteConfig } from "@/config/site";
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="de" data-look={activeLook} className={`dark ${fontVariables}`}>
       <body>
         <SiteAurora />
+        <CursorSpotlight />
         {children}
       </body>
     </html>
