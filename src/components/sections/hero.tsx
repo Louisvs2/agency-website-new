@@ -146,7 +146,7 @@ export function HeroCentered({
             </FadeIn>
           )}
           <FadeIn>
-            <h1 className="text-5xl leading-[1.02] tracking-[-0.02em] text-balance sm:text-6xl lg:text-7xl">
+            <h1 className="text-[2rem] leading-[1.08] tracking-[-0.02em] text-balance sm:text-6xl sm:leading-[1.02] lg:text-7xl">
               {title}
             </h1>
           </FadeIn>
