@@ -11,7 +11,9 @@ export interface TeamMember {
   name: string;
   role: string;
   image: SectionImage;
-  /** What this person owns — shown as a clean list on the card. */
+  /** A short three-line introduction shown under the name. */
+  bio?: string;
+  /** What this person owns — a few focused bullet points on the card. */
   responsibilities?: string[];
 }
 
@@ -60,15 +62,26 @@ export function TeamGrid({
                         </p>
                       </div>
                     </div>
+                    {member.bio && (
+                      <p className="text-sm leading-relaxed text-muted-foreground">
+                        {member.bio}
+                      </p>
+                    )}
                     {member.responsibilities &&
                       member.responsibilities.length > 0 && (
-                        <ul className="flex flex-wrap gap-1.5">
+                        <ul className="mt-auto flex flex-col gap-2.5 border-t border-border/50 pt-5 text-sm">
                           {member.responsibilities.map((item) => (
                             <li
                               key={item}
-                              className="rounded-full border border-border/50 bg-white/[0.03] px-2.5 py-1 text-xs leading-none text-muted-foreground"
+                              className="flex items-center gap-2.5"
                             >
-                              {item}
+                              <span
+                                aria-hidden
+                                className="size-1.5 shrink-0 rounded-full bg-brand"
+                              />
+                              <span className="text-muted-foreground">
+                                {item}
+                              </span>
                             </li>
                           ))}
                         </ul>

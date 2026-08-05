@@ -23,7 +23,9 @@ interface HomeContent {
 export const home: HomeContent = {
   hero: {
     eyebrow: "Websites für Unternehmen",
-    title: "Ihre neue Website — fertig, bevor Sie sich entscheiden.",
+    // Non-breaking space binds the em dash to "Website" so it never starts a
+    // wrapped line on narrow screens — the dash always sits at a line end.
+    title: "Ihre Website — fertig, bevor Sie entscheiden.",
     subtitle:
       "Wir gestalten und betreiben hochwertige Websites für Unternehmen. Sie sehen Ihre Seite kostenlos und entscheiden erst dann. Um Technik, Hosting und Pflege kümmern wir uns.",
     actions: {
