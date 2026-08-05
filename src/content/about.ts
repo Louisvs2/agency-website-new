@@ -2,14 +2,12 @@
 
 import { Handshake, Sparkles, Target } from "lucide-react";
 
-import type { ContactPerson } from "@/components/sections/contact-person";
 import type { Feature } from "@/components/sections/features";
 import type { Action, SectionIntro } from "@/types/content";
 
 interface AboutContent {
   hero: { eyebrow: string; title: string; subtitle: string };
   values: { intro: SectionIntro; items: Feature[] };
-  person: { intro: SectionIntro; data: ContactPerson };
   cta: { title: string; subtitle: string; action: Action; note: string };
 }
 
@@ -46,18 +44,6 @@ export const about: AboutContent = {
           "Von der Idee bis zum laufenden Betrieb kümmern wir uns um alles. Sie haben einen festen Ansprechpartner.",
       },
     ],
-  },
-  person: {
-    intro: {
-      eyebrow: "Ihr Ansprechpartner",
-      title: "Mit wem Sie sprechen",
-    },
-    data: {
-      name: "Louis Reinecke",
-      role: "Ihr Ansprechpartner",
-      initials: "LR",
-      note: "Ich begleite Sie von der ersten Frage bis zur fertigen Website — direkt erreichbar, ohne Umwege und ohne Fachchinesisch.",
-    },
   },
   cta: {
     title: "Lernen Sie uns kennen",

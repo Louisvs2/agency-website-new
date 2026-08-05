@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
-import { ContactPersonSection } from "@/components/sections/contact-person";
 import { CTA } from "@/components/sections/cta";
 import { FeatureSplit } from "@/components/sections/features";
 import { HeroStatement } from "@/components/sections/hero";
+import { TeamGrid } from "@/components/sections/team";
 import { about } from "@/content/about";
+import { team } from "@/content/team";
 
 export const metadata: Metadata = {
   title: "Über uns",
@@ -20,10 +21,7 @@ export default function UeberUnsPage() {
         items={about.values.items}
         background="muted"
       />
-      <ContactPersonSection
-        intro={about.person.intro}
-        person={about.person.data}
-      />
+      <TeamGrid intro={team.intro} members={team.members} />
       <CTA {...about.cta} />
     </>
   );

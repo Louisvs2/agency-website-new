@@ -215,6 +215,36 @@
   }
 }
 
+/* Aurora background drift (see SiteAurora). GPU transforms only; the global
+   reduced-motion rule below neutralises these for users who opt out. */
+@keyframes aurora-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(9%, -6%, 0) scale(1.12);
+  }
+}
+@keyframes aurora-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-8%, 6%, 0) scale(0.9);
+  }
+}
+@keyframes aurora-drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 8%, 0) scale(1.1);
+  }
+}
+
 /* Honour prefers-reduced-motion everywhere (DESIGN.md §10): neutralise CSS
    animations and transitions — including library-driven ones like the mobile
    drawer — so nothing moves for users who opt out. Framer entrances handle

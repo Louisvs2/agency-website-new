@@ -1,7 +1,6 @@
 // Homepage content for CultTwenty. Honest copy for a young agency — no
 // invented numbers, testimonials or client logos.
 
-import type { ContactPerson } from "@/components/sections/contact-person";
 import type { Service } from "@/components/sections/features";
 import type { FaqItem } from "@/components/sections/faq";
 import type { ProcessStep } from "@/components/sections/process";
@@ -17,7 +16,6 @@ interface HomeContent {
   };
   services: { intro: SectionIntro; items: Service[] };
   process: { intro: SectionIntro; steps: ProcessStep[] };
-  person: { intro: SectionIntro; data: ContactPerson };
   faq: { intro: SectionIntro; items: FaqItem[] };
   cta: { title: string; subtitle: string; action: Action; note: string };
 }
@@ -71,18 +69,6 @@ export const home: HomeContent = {
           "Wir veröffentlichen Ihre Website und betreuen sie dauerhaft — inklusive Hosting, Updates und Pflege.",
       },
     ],
-  },
-  person: {
-    intro: {
-      eyebrow: "Ihr Ansprechpartner",
-      title: "Persönlich für Sie da",
-    },
-    data: {
-      name: "Louis Reinecke",
-      role: "Ihr Ansprechpartner",
-      initials: "LR",
-      note: "Ich begleite Sie von der ersten Frage bis zur fertigen Website — direkt erreichbar, ohne Umwege und ohne Fachchinesisch.",
-    },
   },
   faq: {
     intro: {

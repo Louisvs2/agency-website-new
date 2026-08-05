@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { SiteAurora } from "@/components/sections/site-aurora";
 import { activeLook } from "@/config/theme";
 import { siteConfig } from "@/config/site";
 import { fontVariables } from "@/lib/fonts";
@@ -21,8 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" data-look={activeLook} className={fontVariables}>
-      <body>{children}</body>
+    <html lang="de" data-look={activeLook} className={`dark ${fontVariables}`}>
+      <body>
+        <SiteAurora />
+        {children}
+      </body>
     </html>
   );
 }
