@@ -27,9 +27,13 @@ export const team: { intro: SectionIntro; members: TeamMember[] } = {
       ],
     },
     {
-      name: "Name folgt",
+      name: "Dilan Assadi",
       role: "Lead Developer",
-      bio: "Verantwortlich für die technische Umsetzung jeder Website — schnell, sicher und zuverlässig. Kümmert sich um Architektur, Performance und den reibungslosen Betrieb im Hintergrund.",
+      image: {
+        src: "/images/team/dilan.jpg",
+        alt: "Porträt von Dilan Assadi, Lead Developer bei CultTwenty",
+      },
+      bio: "Dilan bringt jede Website technisch zum Laufen — schnell, sicher und zuverlässig. Er kümmert sich um Architektur, Performance und den reibungslosen Betrieb im Hintergrund.",
       responsibilities: [
         "Entwicklung & Architektur",
         "Performance & Sicherheit",
@@ -37,9 +41,13 @@ export const team: { intro: SectionIntro; members: TeamMember[] } = {
       ],
     },
     {
-      name: "Name folgt",
+      name: "Samuel Edokpolor",
       role: "Project & Client Success Manager",
-      bio: "Ihr fester Ansprechpartner von Anfang bis Launch. Koordiniert Termine, Inhalte und das Team, damit alles reibungslos zusammenläuft und Sie sich um nichts kümmern müssen.",
+      image: {
+        src: "/images/team/samuel.jpg",
+        alt: "Porträt von Samuel Edokpolor, Project & Client Success Manager bei CultTwenty",
+      },
+      bio: "Samuel ist Ihr fester Ansprechpartner von Anfang bis Launch. Er koordiniert Termine, Inhalte und das Team, damit alles reibungslos zusammenläuft und Sie sich um nichts kümmern müssen.",
       responsibilities: [
         "Projektkoordination",
         "Kundenbetreuung",
