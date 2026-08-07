@@ -5,12 +5,12 @@ import type { Service } from "@/components/sections/features";
 import type { FaqItem } from "@/components/sections/faq";
 import type { ProcessStep } from "@/components/sections/process";
 import { services } from "@/content/services";
-import type { Action, SectionIntro } from "@/types/content";
+import type { Action, Headline, SectionIntro } from "@/types/content";
 
 interface HomeContent {
   hero: {
     eyebrow: string;
-    title: string;
+    title: Headline;
     subtitle: string;
     actions: { primary: Action; secondary: Action };
   };
@@ -23,9 +23,12 @@ interface HomeContent {
 export const home: HomeContent = {
   hero: {
     eyebrow: "Websites für Unternehmen",
-    // Non-breaking space binds the em dash to "Website" so it never starts a
-    // wrapped line on narrow screens — the dash always sits at a line end.
-    title: "Ihre Website — fertig, bevor Sie entscheiden.",
+    // Zwei Zeilen statt einer: erst die Einordnung, dann in der Markenfarbe
+    // das Versprechen, das uns von jedem anderen Anbieter unterscheidet.
+    title: [
+      { text: "Ihre Website —" },
+      { text: "fertig, bevor Sie entscheiden.", accent: true },
+    ],
     subtitle:
       "Wir gestalten und betreiben hochwertige Websites für Unternehmen. Sie sehen Ihre Seite kostenlos und entscheiden erst dann. Um Technik, Hosting und Pflege kümmern wir uns.",
     actions: {

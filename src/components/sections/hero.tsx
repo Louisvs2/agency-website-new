@@ -9,7 +9,13 @@ import { Magnetic } from "@/components/motion/magnetic";
 import { HeroVisual } from "@/components/sections/hero-visual";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { Action, HeroMedia, SectionImage } from "@/types/content";
+import { KineticHeadline } from "@/components/shared/kinetic-headline";
+import type {
+  Action,
+  Headline,
+  HeroMedia,
+  SectionImage,
+} from "@/types/content";
 
 interface HeroActions {
   primary: Action;
@@ -22,6 +28,11 @@ interface HeroBaseProps {
   subtitle?: string;
   actions?: HeroActions;
   className?: string;
+}
+
+/** Nur die zentrierte Variante trägt die betonte, buchstabenweise Überschrift. */
+interface HeroCenteredProps extends Omit<HeroBaseProps, "title"> {
+  title: Headline;
 }
 
 type HeroTone = "default" | "light";
@@ -120,7 +131,7 @@ export function HeroCentered({
   subtitle,
   actions,
   className,
-}: HeroBaseProps) {
+}: HeroCenteredProps) {
   return (
     <Section
       className={cn(
@@ -146,9 +157,10 @@ export function HeroCentered({
             </FadeIn>
           )}
           <FadeIn>
-            <h1 className="text-[2rem] leading-[1.08] tracking-[-0.02em] text-balance sm:text-6xl sm:leading-[1.02] lg:text-7xl">
-              {title}
-            </h1>
+            <KineticHeadline
+              headline={title}
+              className="text-[2rem] leading-[1.08] tracking-[-0.02em] text-balance sm:text-6xl sm:leading-[1.02] lg:text-7xl"
+            />
           </FadeIn>
           {subtitle && (
             <FadeIn>

@@ -6,6 +6,19 @@ export interface Action {
   href: string;
 }
 
+/**
+ * One line of a headline. Mehrere Teile ergeben mehrere Zeilen; `accent`
+ * hebt die Zeile in der Markenfarbe hervor, damit das Versprechen und nicht
+ * die Einleitung ins Auge fällt.
+ */
+export interface HeadlinePart {
+  text: string;
+  accent?: boolean;
+}
+
+/** Headline as plain text, or split into betonte Zeilen. */
+export type Headline = string | HeadlinePart[];
+
 /** Standard section opener content, rendered via SectionHeading. */
 export interface SectionIntro {
   eyebrow?: string;
