@@ -8,8 +8,11 @@ export const team: { intro: SectionIntro; members: TeamMember[] } = {
   intro: {
     eyebrow: "Team",
     title: "Die Menschen hinter CultTwenty",
+    // Der Zusatz löst einen Widerspruch auf: Im Impressum stehen zwei
+    // Gesellschafter, auf dieser Seite drei Gesichter — wer beides liest,
+    // fragt sich sonst, welche Angabe stimmt. Beide stimmen.
     subtitle:
-      "Ein kleines, eingespieltes Team aus Design, Entwicklung und Betreuung — damit Ihre Website aus einer Hand entsteht.",
+      "Ein kleines, eingespieltes Team aus Design, Entwicklung und Betreuung — damit Ihre Website aus einer Hand entsteht. Gesellschafter der CultTwenty GbR sind Louis Reinecke und Noel David Ritter; im Tagesgeschäft arbeiten Sie mit den hier vorgestellten Personen zusammen.",
   },
   members: [
     {
