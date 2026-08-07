@@ -4,14 +4,19 @@ import { CursorSpotlight } from "@/components/motion/cursor-spotlight";
 import { SiteAurora } from "@/components/sections/site-aurora";
 import { activeLook } from "@/config/theme";
 import { siteConfig } from "@/config/site";
+import { JsonLd } from "@/components/shared/json-ld";
 import { fontVariables } from "@/lib/fonts";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: siteConfig.name,
+    // Der Standardtitel greift nur, wo eine Seite keinen eigenen setzt. Er
+    // nennt jetzt die Leistung statt nur den Firmennamen — nach "CultTwenty"
+    // sucht nur, wer uns schon kennt.
+    default: `${siteConfig.name} — Website erstellen lassen`,
     template: `%s – ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -35,6 +40,10 @@ export default function RootLayout({
   return (
     <html lang="de" data-look={activeLook} className={`dark ${fontVariables}`}>
       <body>
+        {/* Einmal im Root statt auf jeder Seite — Organisation und Website
+            gelten für den gesamten Auftritt. */}
+        <JsonLd schema={organizationSchema()} />
+        <JsonLd schema={websiteSchema()} />
         <SiteAurora />
         <CursorSpotlight />
         {children}

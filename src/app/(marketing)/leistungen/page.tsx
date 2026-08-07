@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-
 import { CTA } from "@/components/sections/cta";
 import { ServiceCards } from "@/components/sections/features";
 import { HeroCentered } from "@/components/sections/hero";
 import { services, servicesPage } from "@/content/services";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Leistungen",
+export const metadata = createMetadata({
+  title: "Leistungen: Website-Design, Umsetzung und Hosting",
   description: servicesPage.hero.subtitle,
-};
+  path: "/leistungen/",
+});
 
 export default function LeistungenPage() {
   return (

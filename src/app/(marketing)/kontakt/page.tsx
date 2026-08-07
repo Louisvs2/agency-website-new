@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
-
 import { ContactSection } from "@/components/sections/contact";
 import { WhatsAppButton } from "@/components/sections/whatsapp-button";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
+import { createMetadata } from "@/lib/metadata";
 import { contact } from "@/content/contact";
 import { Mail } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Kontakt",
-  description: contact.intro.subtitle,
-};
+export const metadata = createMetadata({
+  title: "Kontakt — kostenlose Website-Vorschau anfragen",
+  description:
+    "Schreiben Sie uns per WhatsApp, E-Mail oder Telefon. Wir bauen Ihre Website und zeigen sie Ihnen fertig — kostenlos und unverbindlich.",
+  path: "/kontakt/",
+});
 
 // Static hosting has no server for a form — customers reach us directly by
 // WhatsApp, e-mail or phone. The full address lives only in the Impressum.
@@ -18,6 +19,7 @@ export default function KontaktPage() {
   return (
     <ContactSection
       intro={contact.intro}
+      headingAs="h1"
       email={siteConfig.contact.email}
       phone={siteConfig.contact.phone}
     >

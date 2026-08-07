@@ -6,6 +6,18 @@ import { ProcessSteps } from "@/components/sections/process";
 import { TeamGrid } from "@/components/sections/team";
 import { home } from "@/content/home";
 import { team } from "@/content/team";
+import { createMetadata } from "@/lib/metadata";
+import { faqSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/shared/json-ld";
+
+// Eigener, vollständiger Titel statt "CultTwenty" — auf der Startseite steht
+// das wichtigste Suchwort, nicht nur der Firmenname.
+export const metadata = createMetadata({
+  title: "Website erstellen lassen — fertig sehen, dann entscheiden",
+  description: home.hero.subtitle,
+  path: "/",
+  absoluteTitle: true,
+});
 
 // CultTwenty homepage: promise → offer → how it works → who you'll talk to →
 // objections → action. No invented proof (stats/testimonials) for a young firm.
@@ -21,6 +33,16 @@ export default function HomePage() {
       <ProcessSteps intro={home.process.intro} steps={home.process.steps} />
       <TeamGrid intro={team.intro} members={team.members} background="muted" />
       <FAQ intro={home.faq.intro} items={home.faq.items} />
+      {/* Nur die Fragen, die auch sichtbar auf der Seite stehen — alles andere
+          verstößt gegen Googles Regeln für strukturierte Daten. */}
+      <JsonLd
+        schema={faqSchema(
+          home.faq.items.map((item) => ({
+            question: item.question,
+            answer: item.answer,
+          })),
+        )}
+      />
       <CTA {...home.cta} />
     </>
   );

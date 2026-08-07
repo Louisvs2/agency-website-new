@@ -14,6 +14,8 @@ interface ContactSectionProps {
   address?: string[];
   /** Slot for the contact form (added in Phase 4 per PLAN.md §10). */
   children?: React.ReactNode;
+  /** Heading level — "h1" where this section opens a page of its own. */
+  headingAs?: "h1" | "h2";
   background?: SectionBackground;
   className?: string;
 }
@@ -51,6 +53,7 @@ export function ContactSection({
   phone,
   address,
   children,
+  headingAs = "h2",
   background,
   className,
 }: ContactSectionProps) {
@@ -59,7 +62,7 @@ export function ContactSection({
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <FadeIn className="flex flex-col gap-10">
-            <SectionHeading {...intro} align="start" />
+            <SectionHeading {...intro} align="start" as={headingAs} />
             <div className="flex flex-col gap-6">
               {email && (
                 <ContactChannel icon={Mail} label="E-Mail">
