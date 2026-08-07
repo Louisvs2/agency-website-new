@@ -23,12 +23,9 @@ interface HomeContent {
 export const home: HomeContent = {
   hero: {
     eyebrow: "Websites für Unternehmen",
-    // Zwei Zeilen statt einer: erst die Einordnung, dann in der Markenfarbe
-    // das Versprechen, das uns von jedem anderen Anbieter unterscheidet.
-    title: [
-      { text: "Ihre Website —" },
-      { text: "fertig, bevor Sie entscheiden.", accent: true },
-    ],
+    // Zwei Zeilen statt einer: der Umbruch trennt die Einordnung vom
+    // Versprechen und gibt ihm damit das Gewicht.
+    title: ["Ihre Website —", "fertig, bevor Sie entscheiden."],
     subtitle:
       "Wir gestalten und betreiben hochwertige Websites für Unternehmen. Sie sehen Ihre Seite kostenlos und entscheiden erst dann. Um Technik, Hosting und Pflege kümmern wir uns.",
     actions: {

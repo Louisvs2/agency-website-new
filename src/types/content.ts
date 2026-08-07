@@ -7,17 +7,10 @@ export interface Action {
 }
 
 /**
- * One line of a headline. Mehrere Teile ergeben mehrere Zeilen; `accent`
- * hebt die Zeile in der Markenfarbe hervor, damit das Versprechen und nicht
- * die Einleitung ins Auge fällt.
+ * Headline as one string, or als Liste von Zeilen. Die Betonung entsteht
+ * allein durch den Umbruch — die Schrift bleibt durchgehend weiß.
  */
-export interface HeadlinePart {
-  text: string;
-  accent?: boolean;
-}
-
-/** Headline as plain text, or split into betonte Zeilen. */
-export type Headline = string | HeadlinePart[];
+export type Headline = string | string[];
 
 /** Standard section opener content, rendered via SectionHeading. */
 export interface SectionIntro {

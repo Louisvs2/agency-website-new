@@ -1,8 +1,7 @@
-import { cn } from "@/lib/utils";
-import type { Headline, HeadlinePart } from "@/types/content";
+import type { Headline } from "@/types/content";
 
 /**
- * A headline whose individual letters react to the cursor.
+ * A headline whose individual letters lift under the cursor.
  *
  * Bewusst ohne JavaScript: jeder Buchstabe ist ein eigenes Inline-Element mit
  * einem CSS-Hover. Eine Variante, die die Mausposition verfolgt, müsste bei
@@ -15,14 +14,10 @@ import type { Headline, HeadlinePart } from "@/types/content";
  * bleibt der Text vollständig erhalten, Suchmaschinen lesen ihn also normal.
  */
 
-function toParts(headline: Headline): HeadlinePart[] {
-  return typeof headline === "string" ? [{ text: headline }] : headline;
-}
-
-function Letters({ text, accent }: HeadlinePart) {
+function Letters({ line }: { line: string }) {
   // Nach Wörtern trennen und die Leerzeichen behalten: so bleiben Umbruch,
   // Textauswahl und Kopieren unverändert.
-  return text.split(/(\s+)/).map((chunk, chunkIndex) => {
+  return line.split(/(\s+)/).map((chunk, chunkIndex) => {
     if (/^\s+$/.test(chunk)) return chunk;
 
     return (
@@ -30,18 +25,9 @@ function Letters({ text, accent }: HeadlinePart) {
         {[...chunk].map((character, index) => (
           <span
             key={index}
-            className={cn(
-              "inline-block transition duration-200 ease-out",
-              // motion-safe: Wer Bewegung reduziert hat, bekommt nur den
-              // Farbwechsel statt eines springenden Buchstabens.
-              "motion-safe:hover:-translate-y-[0.07em]",
-              // Die Buchstaben tauschen beim Überfahren die Farbe der jeweils
-              // anderen Zeile. Ein Wechsel von brand zu brand-strong wäre
-              // wirkungslos: im dunklen Theme sind beide Token derselbe Wert.
-              accent
-                ? "text-brand-strong hover:text-foreground"
-                : "hover:text-brand-strong",
-            )}
+            // motion-safe: Wer Bewegung reduziert hat, bekommt keinen
+            // springenden Buchstaben.
+            className="inline-block transition-transform duration-200 ease-out motion-safe:hover:-translate-y-[0.07em]"
           >
             {character}
           </span>
@@ -58,17 +44,16 @@ export function KineticHeadline({
   headline: Headline;
   className?: string;
 }) {
-  const parts = toParts(headline);
-  const plain = parts.map((part) => part.text).join(" ");
+  const lines = typeof headline === "string" ? [headline] : headline;
 
   return (
-    <h1 aria-label={plain} className={className}>
+    <h1 aria-label={lines.join(" ")} className={className}>
       <span aria-hidden>
-        {parts.map((part, index) => (
-          // Jeder Teil eine eigene Zeile — die Betonung wirkt nur, wenn die
-          // Einleitung und das Versprechen sichtbar getrennt sind.
+        {lines.map((line, index) => (
+          // Jede Zeile ein eigener Block — die Betonung entsteht allein durch
+          // den Umbruch, ohne Farbwechsel.
           <span key={index} className="block">
-            <Letters {...part} />
+            <Letters line={line} />
           </span>
         ))}
       </span>
