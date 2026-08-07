@@ -15,6 +15,16 @@ export const metadata: Metadata = {
     template: `%s – ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  // Weißes C auf Schwarz. Die Tab-Größen sind in genau dieser Auflösung
+  // gezeichnet statt aus einer großen Datei verkleinert — das bleibt im Tab
+  // sichtbar schärfer.
+  icons: {
+    icon: [
+      { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
