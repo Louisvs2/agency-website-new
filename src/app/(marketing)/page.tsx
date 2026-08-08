@@ -36,7 +36,12 @@ export default function HomePage() {
       />
       <ServiceCards intro={home.services.intro} items={home.services.items} />
       {/* Erst sagen, was wir tun — dann zeigen, wie es aussieht. */}
-      <Gallery intro={work.intro} images={work.images} background="muted" />
+      <Gallery
+        intro={work.intro}
+        images={work.images}
+        layout="stack"
+        background="muted"
+      />
       <ProcessSteps intro={home.process.intro} steps={home.process.steps} />
       <TeamGrid intro={team.intro} members={team.members} background="muted" />
       <FAQ intro={home.faq.intro} items={home.faq.items} />
