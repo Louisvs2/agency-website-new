@@ -42,21 +42,26 @@ const AUSFAHREN =
 
 function Kachel({ image }: { image: SectionImage }) {
   return (
-    <figure className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted shadow-[0_18px_50px_-24px_rgba(0,0,0,0.75)] ring-1 ring-black/5 dark:ring-white/10">
-      <Image
-        src={image.src}
-        alt={image.alt}
-        fill
-        sizes="(min-width: 1024px) 33vw, 80vw"
-        className="object-cover"
-      />
+    <figure className="relative">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted shadow-[0_18px_50px_-24px_rgba(0,0,0,0.75)] ring-1 ring-black/5 dark:ring-white/10">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes="(min-width: 1024px) 33vw, 80vw"
+          className="object-cover"
+        />
+      </div>
       {image.caption && (
-        /* Die Beschriftung liegt IM Bild statt darunter. Im gefächerten
-           Zustand würden drei Unterschriften unter überlappenden Karten
-           ineinanderlaufen; hier wandert sie mit ihrer Karte mit und bleibt
-           lesbar. Die Kennzeichnung als Entwurf trägt zusätzlich der
-           Einleitungstext des Abschnitts. */
-        <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-4 pt-10 pb-3 text-right text-sm font-medium text-white">
+        /* Zwei Zustände, ein Element:
+           Am Handy steht die Beschriftung ruhig unter dem Bild — dort liegen
+           die Karten nebeneinander, ein dunkler Verlauf über dem Foto wäre
+           nur ein Balken ohne Aufgabe.
+           Ab lg fächern die Karten und verdecken einander; dort muss die
+           Beschriftung mit ins Bild wandern, sonst laufen drei Unterschriften
+           unter überlappenden Karten ineinander. Rechtsbündig, weil im Fächer
+           jede Karte die linke Seite der nächsten verdeckt. */
+        <figcaption className="mt-3 text-sm text-muted-foreground lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-0 lg:rounded-b-xl lg:bg-gradient-to-t lg:from-black/75 lg:to-transparent lg:px-4 lg:pt-10 lg:pb-3 lg:text-right lg:font-medium lg:text-white">
           {image.caption}
         </figcaption>
       )}
@@ -91,10 +96,17 @@ export function Gallery({
           <ul
             className={cn(
               stack
-                ? // Bis lg eine Wischleiste: 80 % Breite lässt die nächste
-                  // Karte hervorschauen, und genau das sagt „hier geht es
-                  // weiter" ohne einen Hinweis.
-                  "group -mx-6 flex snap-x snap-mandatory [scrollbar-width:none] gap-4 overflow-x-auto px-6 pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
+                ? // Bis lg eine Wischleiste, mittig eingerastet: Karte 80vw
+                  // breit, Innenabstand 10vw — dann steht die eingerastete
+                  // Karte genau in der Bildschirmmitte und links wie rechts
+                  // schaut die nächste hervor. Das sagt „hier geht es weiter"
+                  // ohne einen Hinweis.
+                  //
+                  // Bewusst in Viewport-Breiten und nicht in Prozent: eine
+                  // Prozentbreite bezieht sich auf den Inhaltsbereich, der
+                  // wiederum vom Innenabstand abhängt — die Rechnung beißt
+                  // sich dann selbst.
+                  "group -mx-6 flex snap-x snap-mandatory [scrollbar-width:none] gap-4 overflow-x-auto px-[10vw] pb-2 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
                 : "grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8",
             )}
           >
@@ -102,7 +114,7 @@ export function Gallery({
               <li
                 key={image.alt}
                 className={cn(
-                  stack && "w-[80%] shrink-0 snap-start lg:w-auto",
+                  stack && "w-[80vw] shrink-0 snap-center lg:w-auto",
                   stack && FAECHER[index % FAECHER.length],
                   stack && AUSFAHREN,
                 )}
