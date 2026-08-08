@@ -11,6 +11,8 @@ export interface Stat {
   label: string;
   prefix?: string;
   suffix?: string;
+  /** "plain" für Jahreszahlen — sonst wird aus 1987 ein „1.987". */
+  format?: "number" | "plain";
 }
 
 interface StatsProps {
@@ -35,6 +37,7 @@ export function Stats({ intro, items, background, className }: StatsProps) {
                     value={stat.value}
                     prefix={stat.prefix}
                     suffix={stat.suffix}
+                    format={stat.format}
                   />
                 </dd>
                 <dt className="mt-2 text-sm text-muted-foreground">

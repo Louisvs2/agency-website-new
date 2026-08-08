@@ -2,6 +2,11 @@
 // src/content/, die Abschnitte in src/components/sections/ bleiben leer und
 // wiederverwendbar.
 //
+// Die drei Bilder sind Aufnahmen echter Seiten aus diesem Baukasten — gebaut
+// aus HeroEditorial, HeroFullWidth, Stats, ServiceCards, FeatureSplit und CTA,
+// je in einem anderen Look (editorial, bold, minimal). Erfunden sind nur die
+// Betriebe und ihre Inhalte.
+//
 // WICHTIG für spätere Änderungen: Die drei Bilder sind eigene Entwürfe, keine
 // Kundenprojekte. Die Kennzeichnung steht deshalb doppelt — im Untertitel des
 // Abschnitts UND als Bildunterschrift an jeder Kachel. Wer hier echte Projekte
@@ -22,23 +27,23 @@ export const work: {
     eyebrow: "Arbeiten",
     title: "So sieht das aus",
     subtitle:
-      "Drei Entwürfe aus unserer Feder — für ein Autohaus, eine Steuerkanzlei und ein Bauunternehmen. Noch keine Kundenprojekte: Wir sind jung, und erfundene Referenzen wären das Gegenteil dessen, wofür wir stehen. Sobald die ersten Websites live sind, stehen sie hier.",
+      "Drei Entwürfe aus unserem Baukasten — eine Kanzlei, ein Neubauquartier, ein Kunstmuseum. Dieselben Bausteine, drei völlig verschiedene Handschriften. Noch keine Kundenprojekte: Wir sind jung, und erfundene Referenzen wären das Gegenteil dessen, wofür wir stehen. Sobald die ersten Websites live sind, stehen sie hier.",
   },
   images: [
     {
-      src: "/images/showcase/autohaus.webp",
-      alt: "Entwurf einer Autohaus-Website: dunkelblaue Startseite mit Fahrzeugsuche und drei Fahrzeugkacheln",
-      caption: "Autohaus · Konzeptentwurf",
-    },
-    {
       src: "/images/showcase/kanzlei.webp",
-      alt: "Entwurf einer Kanzlei-Website: heller Serifensatz mit Zitat, Kennzahlen und Leistungsübersicht",
-      caption: "Steuerkanzlei · Konzeptentwurf",
+      alt: "Entwurf einer Kanzlei-Website: große Serifenüberschrift auf cremefarbenem Grund, darunter ein Foto der Kanzleibibliothek",
+      caption: "Kanzlei · Konzeptentwurf",
     },
     {
-      src: "/images/showcase/bau.webp",
-      alt: "Entwurf einer Bauunternehmen-Website: dunkle Startseite mit Kran, Kennzahlen und Projektreferenzen",
-      caption: "Bauunternehmen · Konzeptentwurf",
+      src: "/images/showcase/immobilien.webp",
+      alt: "Entwurf einer Website für ein Neubauquartier: das Gebäude zur blauen Stunde als vollflächiges Bild, der Text liegt darüber",
+      caption: "Immobilien · Konzeptentwurf",
+    },
+    {
+      src: "/images/showcase/museum.webp",
+      alt: "Entwurf einer Museums-Website: ein Ausstellungssaal füllt das Bild, der Titel der Ausstellung steht mittig darüber",
+      caption: "Kunstmuseum · Konzeptentwurf",
     },
   ],
   audience: {
