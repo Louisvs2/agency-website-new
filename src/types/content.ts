@@ -24,6 +24,11 @@ export interface SectionIntro {
 export interface SectionImage {
   src: string | StaticImageData;
   alt: string;
+  /** Kurze Bildunterschrift, z. B. „Autohaus · Konzeptentwurf". Trägt bei den
+   *  Arbeiten die Kennzeichnung, dass es sich um einen Entwurf handelt — die
+   *  darf nicht nur in der Abschnittsüberschrift stehen, an der jemand
+   *  vorbeiscrollt. */
+  caption?: string;
 }
 
 /** Logo with intrinsic dimensions (rendered at fixed height, no layout shift). */
