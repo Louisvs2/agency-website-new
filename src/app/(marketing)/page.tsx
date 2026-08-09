@@ -12,10 +12,16 @@ import { createMetadata } from "@/lib/metadata";
 import { faqSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/shared/json-ld";
 
-// Eigener, vollständiger Titel statt "CultTwenty" — auf der Startseite steht
-// das wichtigste Suchwort, nicht nur der Firmenname.
+// Firmenname zuerst: Im Browser-Tab sind nur die ersten rund 35 Zeichen zu
+// sehen, ein Name am Ende ist dort unsichtbar. Direkt danach das wichtigste
+// Suchwort, dann das Versprechen. Dass Google bei rund 60 Zeichen abschneidet
+// und "dann entscheiden" in der Trefferliste fehlen wird, ist bewusst in Kauf
+// genommen — im Tab und im Lesezeichen zählt der Anfang.
+//
+// `absoluteTitle` bleibt gesetzt, sonst hängt die Fabrik den Firmennamen ein
+// zweites Mal hinten an.
 export const metadata = createMetadata({
-  title: "Website erstellen lassen — fertig sehen, dann entscheiden",
+  title: "CultTwenty — Website erstellen lassen, erst sehen dann entscheiden",
   description: home.hero.subtitle,
   path: "/",
   absoluteTitle: true,

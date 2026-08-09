@@ -23,8 +23,14 @@ export const metadata: Metadata = {
   // Weißes C auf Schwarz. Die Tab-Größen sind in genau dieser Auflösung
   // gezeichnet statt aus einer großen Datei verkleinert — das bleibt im Tab
   // sichtbar schärfer.
+  //
+  // Die .ico steht bewusst zuerst und zusätzlich zu den PNG: Browser und
+  // Dienste fragen /favicon.ico per Konvention direkt ab, auch ohne Verweis im
+  // HTML. Sie ist damit der Rückfallweg, der auch dann noch trägt, wenn der
+  // Ordner /icons einmal nicht mit hochgeladen wurde.
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48", type: "image/x-icon" },
       { url: "/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/icons/favicon-96.png", sizes: "96x96", type: "image/png" },
     ],
