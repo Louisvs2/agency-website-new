@@ -60,8 +60,13 @@ function Kachel({ image }: { image: SectionImage }) {
            Ab lg fächern die Karten und verdecken einander; dort muss die
            Beschriftung mit ins Bild wandern, sonst laufen drei Unterschriften
            unter überlappenden Karten ineinander. Rechtsbündig, weil im Fächer
-           jede Karte die linke Seite der nächsten verdeckt. */
-        <figcaption className="mt-3 text-sm text-muted-foreground lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-0 lg:rounded-b-xl lg:bg-gradient-to-t lg:from-black/75 lg:to-transparent lg:px-4 lg:pt-10 lg:pb-3 lg:text-right lg:font-medium lg:text-white">
+           jede Karte die linke Seite der nächsten verdeckt.
+           Der Verlauf hält seine Deckkraft bis 45 % statt gleichmäßig
+           auszulaufen: die Buchstaben sitzen ganz unten, ein linearer Verlauf
+           ist genau dort schon halb durchsichtig. Über einem hellen
+           Website-Foto kam der Text so nur auf 3,5:1 (gemessen), mit dem
+           gehaltenen Abschnitt auf über 12:1. */
+        <figcaption className="mt-3 text-sm text-muted-foreground lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-0 lg:rounded-b-xl lg:bg-[linear-gradient(to_top,rgba(0,0,0,0.88),rgba(0,0,0,0.8)_45%,transparent)] lg:px-4 lg:pt-10 lg:pb-3 lg:text-right lg:font-medium lg:text-white">
           {image.caption}
         </figcaption>
       )}
