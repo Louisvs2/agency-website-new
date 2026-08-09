@@ -73,7 +73,12 @@
   --secondary: oklch(0.269 0.005 80);
   --secondary-foreground: oklch(0.985 0.002 85);
   --muted: oklch(0.269 0.005 80);
-  --muted-foreground: oklch(0.708 0.01 80);
+  /* Fliesstext auf dunklem Grund. Bewusst heller als der uebliche Shadcn-Wert
+     (0.708): die Abschnitte sind durchsichtig, der Text liegt also direkt auf
+     der Aurora und nicht auf --background. Bei 0.708 verfehlten sieben
+     Textstellen die WCAG-AA-Grenze von 4,5:1, bei 0.78 keine einzige
+     (gemessen an 190 Stellen, 393x852 und 1440x900). */
+  --muted-foreground: oklch(0.78 0.01 80);
   --accent: oklch(0.269 0.006 80);
   --accent-foreground: oklch(0.985 0.002 85);
   --destructive: oklch(0.704 0.191 22.216);

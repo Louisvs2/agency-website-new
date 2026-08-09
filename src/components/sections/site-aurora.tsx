@@ -91,14 +91,6 @@ export function SiteAurora() {
           filter: "blur(90px)",
         }}
       />
-      {/* Vignette keeps content crisp over the glow. */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(120% 85% at 50% 0%, transparent 45%, rgba(0,0,0,0.4) 100%)",
-        }}
-      />
     </div>
   );
 }
